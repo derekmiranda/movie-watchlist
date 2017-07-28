@@ -2,7 +2,7 @@
   "name": "movie-watchlist",
   "version": "1.0.0",
   "main": "index.js",
-  "repository": "git@github.com:derekmiranda/movie-watchlist.git",
+  "repository": "https://github.com/derekmiranda/movie-watchlist.git",
   "author": "Derek Miranda <derek.miranda.1992@gmail.com>",
   "license": "MIT"
 }
