@@ -5,6 +5,7 @@ import MovieTable from '../MovieTable';
 
 test.beforeEach(t => {
   t.context.wrapper = shallow(<MovieTable />);
+  t.context.expectedFields = ['Title', 'Director', 'Actors', 'Tags', 'Notes'];
 })
 
 test('MovieTable renders properly', t => {
@@ -18,13 +19,11 @@ test('MovieTable renders a table', t => {
 })
 
 test('Table has a header with correct fields', t => {
-  const { wrapper } = t.context;
-  const tableRows = wrapper.find('tr');
-  const numRows = tableRows.length;
-  t.truthy(numRows >= 1, 'No table header');
+  const { wrapper, expectedFields } = t.context;
 
-  const tableHead = tableRows.first();
-  const expectedFields = ['Title', 'Director', 'Actors', 'Tags', 'Notes'];
+  const tableHead = wrapper.find('tr.header');
+  t.truthy(tableHead.exists(), 'No table header rendered');
+  
   const headerFields = tableHead.children();
 
   t.is(expectedFields.length, headerFields.length, 'Not enough header fields');
@@ -32,5 +31,32 @@ test('Table has a header with correct fields', t => {
     const fieldText = field.text();
     const expectedField = expectedFields[i];
     t.truthy(fieldText.includes(expectedField), `Expected ${field} in header`);
+  })
+})
+
+test('Table has row to input new values', t => {
+  const { wrapper, expectedFields } = t.context;
+
+  const inputRow = wrapper.find('tr.newMovie');
+  t.truthy(inputRow.exists(), 'No input row');
+
+  const fieldInputTypeMap = {
+    Title: 'input[type="text"]',
+    Director: 'input[type="text"]',
+    Notes: 'input[type="text"]',
+  }
+
+  const inputCells = inputRow.children('td');
+  t.is(inputCells.length, expectedFields.length, 'Not enough input cells');
+
+  expectedFields.forEach((field, idx) => {
+    const inputType = fieldInputTypeMap[field];
+    if (!inputType) {
+      return;
+    }
+
+    const inputCell = inputCells.at(idx);
+    const input = inputCell.find(inputType);
+    t.truthy(input.exists(), `Correct input for ${field} doesn't exist`);
   })
 })

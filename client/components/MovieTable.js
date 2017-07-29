@@ -10,6 +10,13 @@ const MovieTable = () => {
         <th>Tags</th>
         <th>Notes</th>
       </tr>
+      <tr className='newMovie'>
+        <td><input type='text' /></td>
+        <td><input type='text' /></td>
+        <td></td>
+        <td></td>
+        <td><input type='text' /></td>
+      </tr>
     </table>
   )
 }
