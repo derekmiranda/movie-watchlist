@@ -5,8 +5,11 @@
   "repository": "https://github.com/derekmiranda/movie-watchlist.git",
   "author": "Derek Miranda <derek.miranda.1992@gmail.com>",
   "license": "MIT",
-  "devDependencies": {},
   "scripts": {
-    "start": "node server"
+    "start": "node server",
+    "test": "ava"
+  },
+  "devDependencies": {
+    "ava": "^0.21.0"
   }
 }
