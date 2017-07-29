@@ -4,5 +4,12 @@
   "main": "index.js",
   "repository": "https://github.com/derekmiranda/movie-watchlist.git",
   "author": "Derek Miranda <derek.miranda.1992@gmail.com>",
-  "license": "MIT"
+  "license": "MIT",
+  "devDependencies": {
+    "mocha": "^3.4.2"
+  },
+  "scripts": {
+    "start": "node server",
+    "test": "mocha"
+  }
 }
