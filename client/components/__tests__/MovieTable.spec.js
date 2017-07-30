@@ -2,6 +2,7 @@ import test from 'ava';
 import React from 'react';
 import { shallow } from 'enzyme';
 import MovieTable from '../MovieTable';
+import EditableValue from '../EditableValue';
 
 test.beforeEach(t => {
   t.context.wrapper = shallow(<MovieTable />);
@@ -41,13 +42,13 @@ test('Table has row to input new values', t => {
   t.truthy(inputRow.exists(), 'No input row');
 
   const fieldInputTypeMap = {
-    Title: 'input[type="text"]',
-    Director: 'input[type="text"]',
-    Notes: 'input[type="text"]',
+    Title: EditableValue,
+    Director: EditableValue,
+    Notes: EditableValue,
   }
 
-  const inputCells = inputRow.children('td');
-  t.is(inputCells.length, expectedFields.length, 'Not enough input cells');
+  const singleValCells = inputRow.children('td');
+  t.is(singleValCells.length, expectedFields.length, 'Not enough input cells');
 
   expectedFields.forEach((field, idx) => {
     const inputType = fieldInputTypeMap[field];
@@ -55,7 +56,7 @@ test('Table has row to input new values', t => {
       return;
     }
 
-    const inputCell = inputCells.at(idx);
+    const inputCell = singleValCells.at(idx);
     const input = inputCell.find(inputType);
     t.truthy(input.exists(), `Correct input for ${field} doesn't exist`);
   })

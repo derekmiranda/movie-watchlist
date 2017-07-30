@@ -1,4 +1,5 @@
 import React from 'react';
+import EditableValue from './EditableValue';
 
 const MovieTable = () => {
   return (
@@ -11,11 +12,11 @@ const MovieTable = () => {
         <th>Notes</th>
       </tr>
       <tr className='newMovie'>
-        <td><input type='text' /></td>
-        <td><input type='text' /></td>
+        <td><EditableValue /></td>
+        <td><EditableValue /></td>
         <td></td>
         <td></td>
-        <td><input type='text' /></td>
+        <td><EditableValue /></td>
       </tr>
     </table>
   )
