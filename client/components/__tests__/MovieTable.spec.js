@@ -3,6 +3,7 @@ import React from 'react';
 import { shallow } from 'enzyme';
 import MovieTable from '../MovieTable';
 import EditableValue from '../EditableValue';
+import ValueList from '../ValueList';
 
 test.beforeEach(t => {
   t.context.wrapper = shallow(<MovieTable />);
@@ -44,6 +45,8 @@ test('Table has row to input new values', t => {
   const fieldInputTypeMap = {
     Title: EditableValue,
     Director: EditableValue,
+    Actors: ValueList,
+    Tags: ValueList,
     Notes: EditableValue,
   }
 
@@ -61,3 +64,5 @@ test('Table has row to input new values', t => {
     t.truthy(input.exists(), `Correct input for ${field} doesn't exist`);
   })
 })
+
+test.todo('Has correct table organizing tags (thead, tbody...)')

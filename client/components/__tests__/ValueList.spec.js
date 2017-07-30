@@ -33,3 +33,4 @@ test('Renders passed in values as list items', t => {
 });
 
 test.todo('Clicking on value switches it w/ text input');
+test.todo('Clearing contents of non-last values removes the it from list');

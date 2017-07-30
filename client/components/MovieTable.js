@@ -1,5 +1,6 @@
 import React from 'react';
 import EditableValue from './EditableValue';
+import ValueList from './ValueList';
 
 const MovieTable = () => {
   return (
@@ -14,8 +15,8 @@ const MovieTable = () => {
       <tr className='newMovie'>
         <td><EditableValue /></td>
         <td><EditableValue /></td>
-        <td></td>
-        <td></td>
+        <td><ValueList /></td>
+        <td><ValueList /></td>
         <td><EditableValue /></td>
       </tr>
     </table>
