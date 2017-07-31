@@ -1,5 +1,5 @@
 import movie from './movie';
-import Immutable from 'seamless-immutable';
+import Immutable, { isImmutable } from 'seamless-immutable';
 import { ADD_MOVIE, REMOVE_MOVIE } from '../../actions/types';
 
 const movies = (state = Immutable([]), action = {}) => {
