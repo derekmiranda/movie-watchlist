@@ -1,13 +1,12 @@
 import test from 'ava';
 import movies from '..';
 import movie from '../movie';
-import Immutable from 'seamless-immutable';
 import {
-  addMovie, removeMovie, editSingleValue
+  addMovie, removeMovie, changeSingleValue, receiveMovies,
 } from '../../../actions/creators';
 
 test.beforeEach(t => {
-  t.context.sampleMovies = Immutable(require('./helpers/sampleMovies'));
+  t.context.rawMovieData = require('./helpers/rawMovieData');
 })
 
 test('Movies should be initialized as empty array', t => {
@@ -15,7 +14,7 @@ test('Movies should be initialized as empty array', t => {
 })
 
 test('Can add new movie to empty list', t => {
-  const newMovie = t.context.sampleMovies[0];
+  const newMovie = t.context.rawMovieData[0];
 
   const actualList = movies(undefined, addMovie(newMovie));
   const expectedList = [movie(newMovie)];
@@ -24,38 +23,43 @@ test('Can add new movie to empty list', t => {
 })
 
 test(`Adding new movie doesn't remove previous ones`, t => {
-  const { sampleMovies } = t.context;
-  const initMovies = sampleMovies.slice(0, -1);
-  const newMovie = sampleMovies[sampleMovies.length - 1];
+  const { rawMovieData } = t.context;
+  const initRawMovies = rawMovieData.slice(0, -1);
+  const newMovie = rawMovieData[rawMovieData.length - 1];
 
+  const initMovies = movies(undefined, receiveMovies(initRawMovies));
   const actualList = movies(initMovies, addMovie(newMovie));
-  const expectedList = sampleMovies.map(rawMovie => movie(rawMovie));
+  const expectedList = rawMovieData.map(rawMovie => movie(rawMovie));
 
   t.deepEqual(actualList, expectedList, 'Movie not added correctly');
 })
 
 test('Can remove movie from list', t => {
-  const { sampleMovies } = t.context;
+  const { rawMovieData } = t.context;
   const targetIdx = 1;
-  const expectedList = sampleMovies
+  const expectedList = rawMovieData
     .filter((_, idx) => idx !== targetIdx)
     .map(rawMovie => movie(rawMovie))
-  const actualList = movies(sampleMovies, removeMovie(targetIdx));
+  const actualList = movies(rawMovieData, removeMovie(targetIdx));
 
   t.deepEqual(actualList, expectedList, 'Movie not removed correctly');
 })
 
 test('Can change single value for one movie', t => {
-  const { sampleMovies } = t.context;
+  const { rawMovieData } = t.context;
 
   const movieIdx = 1;
   const movieField = 'director';
   const newValue = 'Martin Scorsese';
+  const initMovies = movies(undefined, receiveMovies(rawMovieData));
+  const editAction = changeSingleValue({ movieIdx, movieField, newValue });
 
-  const editAction = editSingleValue({ movieIdx, movieField, newValue });
-  const actualMovies = movies(sampleMovies, editAction);
+  const actualMovies = movies(initMovies, editAction);
   const actualEditedMovie = actualMovies && actualMovies[movieIdx];
-  const expectedEditedMovie = sampleMovies[movieIdx].set(movieField, newValue);
+  const expectedEditedMovie = {
+    ...rawMovieData[movieIdx],
+    [movieField]: newValue
+  };
 
   t.deepEqual(actualEditedMovie, expectedEditedMovie, 'Movie not edited correctly');
 })

@@ -2,7 +2,7 @@ import test from 'ava';
 import movie from '../movie';
 import singleValue from '../singleValue';
 import valueList from '../valueList';
-import { addMovie, editSingleValue } from '../../../actions/creators';
+import { addMovie, changeSingleValue } from '../../../actions/creators';
 
 test.beforeEach(t => {
   t.context.emptyMovieState = {
@@ -43,10 +43,10 @@ test('Can edit a single value', t => {
   
   const movieField = 'director';
   const newValue = 'Martin Scorsese';
-  const editAction = editSingleValue({ movieField, newValue });
+  const changeAction = changeSingleValue({ movieField, newValue });
 
   const initMovie = movie(undefined, addMovie(sampleMovie));
-  const actualMovieState = movie(initMovie, editAction);
+  const actualMovieState = movie(initMovie, changeAction);
   const expectedMovieState = {
     ...sampleMovieState,
     [movieField]: singleValue(newValue),
