@@ -1,22 +1,24 @@
 import test from 'ava';
 import Immutable from 'seamless-immutable';
 import movie from '../movie';
+import singleValue from '../singleValue';
+import valueList from '../valueList';
 import { editSingleValue } from '../../../actions/creators';
 
 test.beforeEach(t => {
   t.context.emptyMovieState = Immutable({
-    title: null,
-    director: null,
-    actors: [],
-    tags: [],
-    notes: null,
+    title: singleValue(),
+    director: singleValue(),
+    actors: valueList(),
+    tags: valueList(),
+    notes: singleValue(),
   })
   t.context.sampleMovieState = Immutable({
-    title: 'Toy Story',
-    director: 'John Lasseter',
-    actors: ['Tom Hanks', 'Tim Allen'],
-    tags: ['Animated', '3D', 'Comedy'],
-    notes: 'G.O.A.T.',
+    title: singleValue('Toy Story'),
+    director: singleValue('John Lasseter'),
+    actors: valueList(['Tom Hanks', 'Tim Allen']),
+    tags: valueList(['Animated', '3D', 'Comedy']),
+    notes: singleValue('G.O.A.T.'),
   })
 })
 
