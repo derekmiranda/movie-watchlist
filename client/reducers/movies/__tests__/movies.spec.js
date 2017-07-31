@@ -4,18 +4,16 @@ import {
   addMovie, removeMovie
 } from '../../../actions/creators';
 
+test.beforeEach(t => {
+  t.context.sampleMovies = require('./helpers/sampleMovies');
+})
+
 test('Movies should be initialized as empty array', t => {
   t.deepEqual(movies(), []);
 })
 
 test('Can add new movie to empty list', t => {
-  const newMovie = {
-    title: 'Toy Story',
-    director: 'John Lasseter',
-    actors: ['Tom Hanks', 'Tim Allen'],
-    tags: ['Animated', '3D', 'Comedy'],
-    notes: 'G.O.A.T.',
-  }
+  const newMovie = t.context.sampleMovies[0];
 
   const actualList = movies(undefined, addMovie(newMovie));
   const expectedList = [newMovie];
@@ -24,7 +22,7 @@ test('Can add new movie to empty list', t => {
 })
 
 test(`Adding new movie doesn't remove previous ones`, t => {
-  const sampleMovies = require('./sampleMovies');
+  const { sampleMovies } = t.context;
   const initMovies = sampleMovies.slice();
   const newMovie = initMovies.pop();
 
@@ -34,7 +32,7 @@ test(`Adding new movie doesn't remove previous ones`, t => {
 })
 
 test('Can remove movie from list', t => {
-  const sampleMovies = require('./sampleMovies');
+  const { sampleMovies } = t.context;
   const targetIdx = 1;
   const expectedList = sampleMovies.filter((_, idx) => idx !== targetIdx);
   const actualList = movies(sampleMovies, removeMovie(targetIdx));
