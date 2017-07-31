@@ -1,5 +1,5 @@
 import {
-  ADD_MOVIE, REMOVE_MOVIE, EDIT_SINGLE_VALUE,
+  ADD_MOVIE, REMOVE_MOVIE, CHANGE_SINGLE_VALUE,
 } from './types';
 
 export const addMovie = (movie) => ({
@@ -13,7 +13,7 @@ export const removeMovie = (targetIdx) => ({
 })
 
 export const editSingleValue = ({ movieIdx, movieField, newValue }) => ({
-  type: EDIT_SINGLE_VALUE,
+  type: CHANGE_SINGLE_VALUE,
   movieIdx,
   movieField,
   newValue,
