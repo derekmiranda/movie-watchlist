@@ -28,15 +28,18 @@ test('Passed in values wrapped in singleValue object', t => {
 
 test('Can toggle value editing status', t => {
   const toggleAction = toggleSingleValueEditing();
-  const expectedToggledVal = {
-    ...sampleObj,
-    editing: sampleObj.editing ? false : true,
-  }
+  const expectedEditing = sampleObj.editing ? false : true;
 
   const initVal = singleValue(undefined, receiveSingleValue(sampleStr));
   const actualToggledVal = singleValue(initVal, toggleAction);
 
-  t.deepEqual(expectedToggledVal, actualToggledVal);
+  t.is(expectedEditing, actualToggledVal.editing);
 });
 
-test.todo(`Can't toggle off empty value editing`);
+test(`Can't toggle off empty value editing`, t => {
+  const initVal = singleValue();
+  const toggleAction = toggleSingleValueEditing();
+  const actualToggledVal = singleValue(initVal, toggleAction);
+
+  t.truthy(actualToggledVal.editing, 'Should still be editable if no value');
+});

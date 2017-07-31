@@ -18,7 +18,7 @@ const singleValue = (state = initState, action = {}) => {
     case CHANGE_SINGLE_VALUE:
       return state.set('value', action.value);
     case TOGGLE_SINGLE_VALUE_EDITING:
-      const toggledEditing = state.editing ? false : true;
+      const toggledEditing = !state.value || (state.editing ? false : true);
       return state.set('editing', toggledEditing);
     default:
       return state;
