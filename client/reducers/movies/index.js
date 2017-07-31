@@ -12,12 +12,10 @@ const movies = (state = Immutable([]), action = {}) => {
       return state.filter((_, idx) => idx !== targetIdx);
     case EDIT_SINGLE_VALUE:
       const { movieIdx, movieField, newValue } = action;
-      return state.map((movie, idx) => {
-        if (idx === movieIdx) {
-          return movie.set(movieField, newValue);
-        }
-        return movie;
-      })
+      return state.map((currMovie, idx) => idx === movieIdx ?
+          movie(currMovie, action) :
+          currMovie
+      )
     default:
       return state;
   }
