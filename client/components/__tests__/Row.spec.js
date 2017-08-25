@@ -7,6 +7,7 @@ test('should render a tr', t => {
   const emptyHeaderWrap = shallow(<Row />);
   const trWrap = emptyHeaderWrap.find('tr');
   t.is(trWrap.length, 1);
+  t.falsy(true)
 })
 
 test('should render a td for each passed in item', t => {

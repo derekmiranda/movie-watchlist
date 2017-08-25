@@ -7,12 +7,12 @@ import Row from '../Row';
 
 const headerWrap = shallow(<TableHeader />);
 
-test('TableHeader should render a thead', t => {
+test('should render a thead', t => {
   const theadWrap = headerWrap.find('thead');
   t.is(theadWrap.length, 1);
 })
 
-test('TableHeader should render a Row', t => {
+test('should render a Row', t => {
   const theadWrap = headerWrap.find(Row);
   t.is(theadWrap.length, 1);
 })
