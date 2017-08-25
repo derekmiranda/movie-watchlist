@@ -11,8 +11,8 @@ test('should render a tr', t => {
 })
 
 test('should render a Cell for each passed in item', t => {
-  const values = ['something', 'another', 'thing'];
-  const filledRowWrap = shallow(<Row values={values}/>);
+  const items = ['something', 'another', 'thing'];
+  const filledRowWrap = shallow(<Row items={items}/>);
   const cellWrap = filledRowWrap.find(Cell);
-  t.is(cellWrap.length, values.length);
+  t.is(cellWrap.length, items.length);
 })
