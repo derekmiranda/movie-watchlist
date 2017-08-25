@@ -1,4 +1,5 @@
 import test from 'ava';
+import { isImmutable } from 'seamless-immutable';
 import movies from '..';
 import movie from '../movie';
 import {

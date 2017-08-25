@@ -37,20 +37,3 @@ test('Initializes w/ passed in movie data', t => {
   const { sampleMovie, sampleMovieState } = t.context;
   t.deepEqual(movie(sampleMovie), sampleMovieState);
 })
-
-test('Can edit a single value', t => {
-  const { sampleMovie, sampleMovieState } = t.context;
-  
-  const movieField = 'director';
-  const newValue = 'Martin Scorsese';
-  const changeAction = changeSingleValue({ movieField, newValue });
-
-  const initMovie = movie(undefined, addMovie(sampleMovie));
-  const actualMovieState = movie(initMovie, changeAction);
-  const expectedMovieState = {
-    ...sampleMovieState,
-    [movieField]: singleValue(newValue),
-  }
-
-  t.deepEqual(actualMovieState, expectedMovieState, 'Movie value not changed correctly');
-})
