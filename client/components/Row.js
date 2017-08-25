@@ -1,7 +1,10 @@
 import React from 'react';
+import Cell from './Cell';
 
 const Row = ({ values }) => {
-  const valueCells = values && values.map((value, i) => <td key={i}>{value}</td>);
+  const valueCells = values && values.map(
+    (value, i) => <Cell key={i} value={value}/>
+  );
 
   return (
     <tr>
