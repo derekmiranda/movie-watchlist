@@ -5,7 +5,20 @@ export const addMovie = (movie) => ({
   movie: { ...movie },
 })
 
-export const deleteMovie = (movie_idx) => ({
+export const deleteMovie = (movieIdx) => ({
   type: types.DELETE_MOVIE,
-  movie_idx,
+  movieIdx,
+})
+
+export const editNewMovieValue = (field, value) => ({
+  type: types.EDIT_NEW_MOVIE_VALUE,
+  field,
+  value,
+})
+
+export const updateValue = ({ movieIdx, field, value }) => ({
+  type: types.UPDATE_VALUE,
+  movieIdx,
+  field,
+  value,
 })
