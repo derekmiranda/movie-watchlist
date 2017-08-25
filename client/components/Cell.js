@@ -1,8 +1,10 @@
 import React from 'react';
 
-const Cell = () => {
+const Cell = ({ children }) => {
   return (
-    <td></td>
+    <td>
+      { children }
+    </td>
   )
 }
 
