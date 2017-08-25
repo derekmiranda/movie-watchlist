@@ -1,10 +1,10 @@
 import React from 'react';
 import Row from './Row';
 
-const TableHeader = ({ fields }) => {
+const TableHeader = ({ labels }) => {
   return (
     <thead>
-      <Row values={fields} />
+      <Row values={labels} />
     </thead>
   )
 }

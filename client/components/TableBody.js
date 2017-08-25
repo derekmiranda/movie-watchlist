@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import Row from './Row';
 
 const TableBody = ({ fields, rows }) => {
@@ -15,6 +16,11 @@ const TableBody = ({ fields, rows }) => {
       {rowElems || createDefaultRow() }
     </tbody>
   )
+}
+
+TableBody.propTypes = {
+  fields: PropTypes.arrayOf(PropTypes.string),
+  rows: PropTypes.arrayOf(PropTypes.array),
 }
 
 export default TableBody;
