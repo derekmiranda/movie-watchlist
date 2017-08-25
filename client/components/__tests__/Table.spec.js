@@ -1,10 +1,10 @@
 import React from 'react';
 import test from 'ava';
 import { shallow } from 'enzyme';
-import ContactsTable from '../ContactsTable';
+import Table from '../Table';
 import TableHeader from '../TableHeader';
 
-const btnWrap = shallow(<ContactsTable />);
+const btnWrap = shallow(<Table />);
 const tableWrap = btnWrap.find('table');
 
 test('should render a table', t => {

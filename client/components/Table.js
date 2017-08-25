@@ -2,7 +2,7 @@ import React from 'react';
 import TableHeader from './TableHeader';
 import TableBody from './TableBody';
 
-const ContactsTable = ({ fields, contacts }) => {
+const Table = ({ fields, contacts }) => {
   const rows = contacts && contacts.map((contact) => {
     return fields.map(field => contact[field]);
   })
@@ -10,9 +10,9 @@ const ContactsTable = ({ fields, contacts }) => {
   return (
     <table>
       <TableHeader fields={fields} />
-      <TableBody rows={rows} />
+      <TableBody fields={fields} rows={rows} />
     </table>
   )
 }
 
-export default ContactsTable;
+export default Table;
