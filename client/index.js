@@ -6,7 +6,7 @@ import App from './components/App';
 
 const middleware = [];
 
-if (process.env.NODE_ENV === 'dev') {
+if (process.env.NODE_ENV === 'development') {
   const { logger } = require('redux-logger');
   middleware.push(logger);
 }
