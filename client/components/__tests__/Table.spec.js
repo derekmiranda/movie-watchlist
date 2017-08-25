@@ -5,8 +5,8 @@ import Table from '../Table';
 import TableHeader from '../TableHeader';
 import TableBody from '../TableBody';
 
-const btnWrap = shallow(<Table />);
-const tableWrap = btnWrap.find('table');
+const wrapper = shallow(<Table />);
+const tableWrap = wrapper.find('table');
 
 test('should render a table', t => {
   t.is(tableWrap.length, 1);
