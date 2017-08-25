@@ -1,14 +1,14 @@
 import React from 'react';
 import Cell from './Cell';
 
-const Row = ({ values }) => {
-  const valueCells = values && values.map(
-    (value, i) => <Cell key={i} value={value}/>
+const Row = ({ items }) => {
+  const itemCells = items && items.map(
+    (item, i) => <Cell key={i}>{item}</Cell>
   );
 
   return (
     <tr>
-      {valueCells}
+      {itemCells}
     </tr>
   )
 }
