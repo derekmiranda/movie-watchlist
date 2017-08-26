@@ -10,9 +10,8 @@ const TableBody = ({ fields, rows }) => {
     return defaultRow;
   }
 
-  const rowElems = rows.length ?
-    rows.map((row, i) => <Row key={i} items={row} />)
-    :
+  const rowElems = rows && rows.length &&
+    rows.map((row, i) => <Row key={i} idx={i} items={row} />) ||
     createDefaultRow();
   
   return (
@@ -23,7 +22,7 @@ const TableBody = ({ fields, rows }) => {
 }
 
 TableBody.propTypes = {
-  fields: PropTypes.arrayOf(PropTypes.string),
+  fields: PropTypes.arrayOf(PropTypes.string).isRequired,
   rows: PropTypes.arrayOf(PropTypes.array),
 }
 

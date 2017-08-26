@@ -12,6 +12,16 @@ const emptyBodyCtx = () => {
   }
 }
 
+const filledBodyCtx = () => {
+  const createRow = () => ['a', 'b', 'c'];
+  const rows = new Array(3).fill(createRow());
+  const bodyWrap = shallow(<TableBody fields={createRow()} rows={rows} />);
+  return {
+    rows,
+    bodyWrap,
+  }
+}
+
 test('should at least render a tbody', t => {
   const { emptyBodyWrap } = emptyBodyCtx();
   const tbodyWrap = emptyBodyWrap.find('tbody');
@@ -27,9 +37,16 @@ test('should at least render an empty row with given row length', t => {
 })
 
 test('should render Rows for each passed-in row', t => {
-  const createRow = () => ['a', 'b', 'c'];
-  const rows = new Array(3).fill(createRow());
-  const bodyWrap = shallow(<TableBody fields={createRow()} rows={rows} />);
+  const { rows, bodyWrap } = filledBodyCtx();
   const rowWrap = bodyWrap.find(Row);
   t.is(rowWrap.length, rows.length);
+})
+
+test('should pass Row its index w/in the list', t => {
+  const { rows, bodyWrap } = filledBodyCtx();
+  const rowWrap = bodyWrap.find(Row);
+  rowWrap.forEach((row, idx) => {
+    const rowIdx = row.props().idx;
+    t.is(idx, rowIdx);
+  })
 })
