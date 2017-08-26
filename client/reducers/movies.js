@@ -23,12 +23,21 @@ export const movie = (state = defaultMovie, action = {}) => {
 
 const movies = (state = [], action = {}) => {
   switch (action.type) {
-    case ADD_MOVIE:
+    case ADD_MOVIE: {
       const { movie } = action;
       return state.concat(movie);
-    case DELETE_MOVIE:
-      const { movie_idx } = action;
-      return state.filter((_, idx) => idx !== movie_idx);
+    }
+    case DELETE_MOVIE: {
+      const { movieIdx } = action;
+      return state.filter((_, idx) => idx !== movieIdx);
+    }
+    case UPDATE_VALUE: {
+      const { movieIdx, field, value } = action;
+      const updateTargetMovie = (origMovie, idx) => {
+        return idx === movieIdx ? movie(origMovie, action) : origMovie;
+      }
+      return state.map(updateTargetMovie);
+    }
     default:
       return state;
   }

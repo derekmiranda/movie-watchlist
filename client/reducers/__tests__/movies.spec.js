@@ -1,14 +1,6 @@
 import test from 'ava';
-import movies from '../movies';
-import { addMovie, deleteMovie } from '../../actions/creators';
-
-const defaultMovie = {
-  title: '',
-  director: '',
-  genres: '',
-  actors: '',
-  notes: '',
-}
+import movies, { movie } from '../movies';
+import { addMovie, deleteMovie, updateValue } from '../../actions/creators';
 
 const sampleMovie = {
   title: 'Toy Story',
@@ -31,7 +23,7 @@ test('should add new movie to list', t => {
 
 test('can remove a movie', t => {
   const otherMovie = { ...sampleMovie, title: 'Toy Story 2' };
-  const initState = [ { ...sampleMovie}, otherMovie ];
+  const initState = [ { ...sampleMovie }, otherMovie ];
   
   const expected = [ { ...otherMovie } ];
   const actual = movies(initState, deleteMovie(0));
@@ -39,4 +31,16 @@ test('can remove a movie', t => {
   t.deepEqual(expected, actual);
 })
 
-test.todo('can update value in previously saved movie');
+test('can update value in previously saved movie', t => {
+  const initState = [ {...sampleMovie} ];
+  
+  const director = 'Uwe Boll';
+  const expected = [ {...sampleMovie, director } ];
+  const actual = movies(initState, updateValue({
+    movieIdx: 0,
+    field: 'director',
+    value: director,
+  }))
+
+  t.deepEqual(expected, actual);
+});
