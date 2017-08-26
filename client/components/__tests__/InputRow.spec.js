@@ -1,6 +1,5 @@
 import React from 'react';
 import test from 'ava';
-import sinon from 'sinon';
 import { shallow } from 'enzyme';
 import InputRow from '../InputRow';
 import Row from '../Row';
