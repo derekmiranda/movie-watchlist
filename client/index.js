@@ -3,6 +3,7 @@ import ReactDom from 'react-dom';
 import { createStore } from 'redux';
 import { Provider } from 'react-redux';
 import App from './components/App';
+import rootReducer from './reducers';
 
 const middleware = [];
 
@@ -11,7 +12,11 @@ if (process.env.NODE_ENV === 'development') {
   middleware.push(logger);
 }
 
+const store = createStore(rootReducer);
+
 ReactDom.render(
-  <App />,
+  <Provider store={store}>
+    <App />
+  </Provider>,
   document.getElementById('root')
 );
