@@ -10,12 +10,13 @@ const defaultMovie = {
 
 export const movie = (state = defaultMovie, action = {}) => {
   switch (action.type) {
-    case UPDATE_VALUE:
+    case UPDATE_VALUE: {
       const { field, value } = action;
       return {
         ...state,
         [field]: value,
       }
+    }
     default:
       return state;
   }
