@@ -5,7 +5,7 @@ import Row from './Row';
 const TableHeader = ({ labels }) => {
   return (
     <thead>
-      <Row values={labels} />
+      <Row items={labels} />
     </thead>
   )
 }

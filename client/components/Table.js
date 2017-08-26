@@ -17,8 +17,8 @@ const Table = ({ labels, orderedFields, objs }) => {
 }
 
 Table.propTypes = {
-  labels: PropTypes.arrayOf(PropTypes.string),
-  fields: PropTypes.arrayOf(PropTypes.string),
+  labels: PropTypes.arrayOf(PropTypes.string).isRequired,
+  orderedFields: PropTypes.arrayOf(PropTypes.string).isRequired,
   objs: PropTypes.arrayOf(PropTypes.object),
 }
 

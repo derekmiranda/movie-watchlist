@@ -13,7 +13,7 @@ const TableBody = ({ fields, rows }) => {
   
   return (
     <tbody>
-      {rowElems || createDefaultRow() }
+      { rowElems || createDefaultRow() }
     </tbody>
   )
 }
