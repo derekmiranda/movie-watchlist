@@ -13,4 +13,8 @@ test('should have a Row', t => {
   t.is(rowWrap.length, 1);
 })
 
-test.todo('should have an input for every field');
+test('should have an input for every field', t => {
+  const wrapper = shallow(<InputRow fields={fields} values={values} />);
+  const inputWrap = wrapper.shallow(Row).find('input');
+  t.is(inputWrap.length, fields.length);
+});
