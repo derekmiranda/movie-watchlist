@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import InputRow from './InputRow';
+import AddMovieRow from './AddMovieRow';
 
 const TableBody = ({ orderedFields, objs, newMovie }) => {
   const inputRows = objs.map((obj, i) => (
@@ -13,7 +14,7 @@ const TableBody = ({ orderedFields, objs, newMovie }) => {
   ));
   
   const newMovieRow = (
-    <InputRow
+    <AddMovieRow
       orderedFields={orderedFields}
       obj={newMovie}
     />
