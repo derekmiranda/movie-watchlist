@@ -1,9 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import InputRow from './InputRow';
-import AddMovieRow from './AddMovieRow';
+import NewMovieRow from '../containers/NewMovieRow';
 
-const TableBody = ({ orderedFields, objs, newMovie }) => {
+const TableBody = ({ orderedFields, objs }) => {
   const inputRows = objs.map((obj, i) => (
     <InputRow
       key={i}
@@ -14,10 +14,7 @@ const TableBody = ({ orderedFields, objs, newMovie }) => {
   ));
   
   const newMovieRow = (
-    <AddMovieRow
-      orderedFields={orderedFields}
-      obj={newMovie}
-    />
+    <NewMovieRow />
   )
 
   return (

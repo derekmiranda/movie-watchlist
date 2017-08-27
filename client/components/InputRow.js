@@ -17,7 +17,6 @@ const InputRow = ({ orderedFields, obj, extraElems, changeValue }) => {
   }
 
   const inputs = orderedFields.map(fieldToInput);
-
   const items = inputs.concat(extraElems || []);
   const cells = items.map((item, i) => (
     <td key={i}>
