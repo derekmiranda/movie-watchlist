@@ -2,9 +2,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Cell from './Cell';
 
-const Row = ({ items }) => {
+const Row = ({ idx, items }) => {
   const itemCells = items && items.map(
-    (item, i) => <Cell key={i}>{item}</Cell>
+    (item, i) => <Cell key={i} idx={idx}>{item}</Cell>
   );
 
   return (
@@ -15,6 +15,7 @@ const Row = ({ items }) => {
 }
 
 Row.propTypes = {
+  idx: PropTypes.number.isRequired,
   items: PropTypes.array,
 }
 
