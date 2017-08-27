@@ -2,22 +2,24 @@ import React from 'react';
 import test from 'ava';
 import { shallow } from 'enzyme';
 import TableBody from '../TableBody';
+import InputRow from '../InputRow';
 
 const emptyBodyCtx = () => {
-  const fields = ['a', 'b', 'c'];
+  const orderedFields = ['a', 'b', 'c'];
   return {
-    fields,
-    emptyBodyWrap: shallow(<TableBody fields={fields}/>),
+    orderedFields,
+    emptyBodyWrap: shallow(<TableBody orderedFields={orderedFields} objs={[]} />),
   }
 }
 
 const filledBodyCtx = () => {
-  const createRow = () => ['a', 'b', 'c'];
-  const rows = new Array(3).fill(createRow());
-  const bodyWrap = shallow(<TableBody fields={createRow()} rows={rows} />);
+  const fields = ['a', 'b', 'c'];
+  const objs = [{ name: 'Bill', title: 'Guy' }];
+  const bodyWrap = shallow(<TableBody orderedFields={fields} objs={objs} />);
   return {
-    rows,
+    fields,
     bodyWrap,
+    objs,
   }
 }
 
@@ -26,3 +28,11 @@ test('should at least render a tbody', t => {
   const tbodyWrap = emptyBodyWrap.find('tbody');
   t.is(tbodyWrap.length, 1);
 })
+
+test('should render an InputRow for each obj', t => {
+  const { objs, bodyWrap } = filledBodyCtx();
+  const rowWrap = bodyWrap.find(InputRow);
+  t.is(rowWrap.length, objs.length);
+})
+
+test.todo('should pass correct idx, orderedorderedFields, and obj to each InputRow')
