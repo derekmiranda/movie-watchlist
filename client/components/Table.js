@@ -8,7 +8,7 @@ const Table = ({ labels, orderedFields, objs }) => {
   return (
     <table>
       <TableHeader labels={labels} />
-      <TableBody fields={orderedFields} objs={objs} />
+      <TableBody orderedFields={orderedFields} objs={objs} />
     </table>
   )
 }
