@@ -16,6 +16,7 @@ const mapStateToProps = (state) => ({
   orderedFields,
   labels,
   objs: state.movies,
+  newMovie: state.newMovie,
 })
 
 const MoviesTable = connect(mapStateToProps)(Table);

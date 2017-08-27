@@ -3,11 +3,11 @@ import PropTypes from 'prop-types';
 import TableHeader from './TableHeader';
 import TableBody from './TableBody';
 
-const Table = ({ labels, orderedFields, objs }) => {
+const Table = ({ labels, orderedFields, objs, newMovie }) => {
   return (
     <table>
       <TableHeader labels={labels} />
-      <TableBody orderedFields={orderedFields} objs={objs} />
+      <TableBody orderedFields={orderedFields} objs={objs} newMovie={newMovie} />
     </table>
   )
 }
