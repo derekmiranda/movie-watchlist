@@ -4,7 +4,6 @@ import TableHeader from './TableHeader';
 import TableBody from './TableBody';
 
 const Table = ({ labels, orderedFields, objs }) => {
-
   return (
     <table>
       <TableHeader labels={labels} />

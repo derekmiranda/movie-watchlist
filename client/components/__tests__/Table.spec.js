@@ -32,11 +32,10 @@ test('should pass TableBody orderedFields and objs', t => {
       objs={objs}
     />
   )
-  const bodyWrap = tableWrap.find(TableBody);
+  const bodyWrap = filledTable.find(TableBody);
   const bodyProps = bodyWrap.props();
-  console.log(bodyProps, objs);
   const bodyObjs = bodyProps.objs;
   const bodyOrderedFields = bodyProps.orderedFields;
   t.deepEqual(bodyObjs, objs);
-  t.deepEqual(bodyOrderedFields, orderedFields);
+  t.deepEqual(bodyOrderedFields, fields);
 })
