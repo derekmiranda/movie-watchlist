@@ -4,14 +4,11 @@ import TableHeader from './TableHeader';
 import TableBody from './TableBody';
 
 const Table = ({ labels, orderedFields, objs }) => {
-  const rows = objs && objs.map((obj) => {
-    return orderedFields.map(field => obj[field]);
-  })
 
   return (
     <table>
       <TableHeader labels={labels} />
-      <TableBody fields={orderedFields} rows={rows} />
+      <TableBody fields={orderedFields} objs={objs} />
     </table>
   )
 }
