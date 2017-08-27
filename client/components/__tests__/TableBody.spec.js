@@ -28,14 +28,6 @@ test('should at least render a tbody', t => {
   t.is(tbodyWrap.length, 1);
 })
 
-test('should at least render an empty row with given row length', t => {
-  const { emptyBodyWrap, fields } = emptyBodyCtx();
-  const firstRow = emptyBodyWrap.find(Row).first();
-  const cells = firstRow.shallow('tr').children();
-  t.is(firstRow.length, 1);
-  t.is(cells.length, fields.length);
-})
-
 test('should render Rows for each passed-in row', t => {
   const { rows, bodyWrap } = filledBodyCtx();
   const rowWrap = bodyWrap.find(Row);

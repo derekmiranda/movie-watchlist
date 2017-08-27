@@ -4,15 +4,8 @@ import Row from './Row';
 
 const TableBody = ({ fields, rows }) => {
 
-  function createDefaultRow() {
-    const emptyRowValues = new Array(fields.length).fill(null);
-    const defaultRow = <Row items={emptyRowValues} />;
-    return defaultRow;
-  }
-
   const rowElems = rows && rows.length &&
-    rows.map((row, i) => <Row key={i} idx={i} items={row} />) ||
-    createDefaultRow();
+    rows.map((row, i) => <Row key={i} idx={i} items={row} />);
   
   return (
     <tbody>
