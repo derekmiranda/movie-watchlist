@@ -34,11 +34,13 @@ test('should render Rows for each passed-in row', t => {
   t.is(rowWrap.length, rows.length);
 })
 
-test('should pass Row its index w/in the list', t => {
+test('should pass Row its corresponding idx and obj w/in the list', t => {
   const { rows, bodyWrap } = filledBodyCtx();
   const rowWrap = bodyWrap.find(Row);
   rowWrap.forEach((row, idx) => {
     const rowIdx = row.props().idx;
+    const rowObj = row.props().obj;
     t.is(idx, rowIdx);
+    t.deepEqual(obj, rowObj);
   })
 })
