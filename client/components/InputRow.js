@@ -1,10 +1,22 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const InputRow = ({ orderedFields, obj, extraElems }) => {
-  const inputs = orderedFields.map((field) => (
-    <input name={field} value={obj[field]} />
-  ))
+
+const InputRow = ({ orderedFields, obj, extraElems, changeValue }) => {
+
+  const fieldToInput = (field) => {
+    const value = obj[field];
+    const onChange = (event) => {
+      const newValue = event.target.value;
+      return changeValue(field, newValue);
+    }
+    
+    return (
+      <input name={field} value={value} onChange={onChange}/>
+    )
+  }
+
+  const inputs = orderedFields.map(fieldToInput);
 
   const items = inputs.concat(extraElems || []);
   const cells = items.map((item, i) => (
