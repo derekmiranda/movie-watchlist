@@ -22,3 +22,7 @@ export const updateValue = ({ movieIdx, field, value }) => ({
   field,
   value,
 })
+
+export const clearNewMovie = () => ({
+  type: types.CLEAR_NEW_MOVIE,
+})

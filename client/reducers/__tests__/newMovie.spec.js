@@ -1,6 +1,6 @@
 import test from 'ava';
 import newMovie from '../newMovie';
-import { editNewMovieValue } from '../../actions/creators';
+import { editNewMovieValue, clearNewMovie } from '../../actions/creators';
 
 const defaultMovie = {
   title: '',
@@ -24,3 +24,13 @@ test('can update value in new movie', t => {
 
   t.deepEqual(expected, actual);
 });
+
+test('should clear itself after adding to movies list', t => {
+  const movie = {
+    ...defaultMovie,
+    title: 'Up',
+    director: 'Pete Docter?',
+  }
+  
+  t.deepEqual(newMovie(movie, clearNewMovie()), defaultMovie);
+})

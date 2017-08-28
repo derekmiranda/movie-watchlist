@@ -1,4 +1,4 @@
-import { EDIT_NEW_MOVIE_VALUE } from '../actions/types';
+import { EDIT_NEW_MOVIE_VALUE, CLEAR_NEW_MOVIE } from '../actions/types';
 
 const defaultMovie = {
   title: '',
@@ -16,6 +16,9 @@ const newMovie = (state = defaultMovie, action = {}) => {
         ...state,
         [field]: value,
       }
+    }
+    case CLEAR_NEW_MOVIE: {
+      return {...defaultMovie};
     }
     default:
       return state;
