@@ -1,16 +1,20 @@
-import { connect } from 'react-redux';
+import createMovieRowContainer from './createMovieRowContainer';
 import AddMovieRow from '../components/AddMovieRow';
-import { editNewMovieValue } from '../actions/creators';
+import { editNewMovieValue, addMovie } from '../actions/creators';
 
-const mapStateToProps = (state, ownProps) => ({
-  orderedFields: ownProps.orderedFields,
+const mapStateToProps = (state) => ({
   obj: state.newMovie,
 })
 
 const mapDispatchToProps = (dispatch) => ({
   editNewMovieValue: (field, value) => dispatch(editNewMovieValue(field, value)),
+  addMovie: (movie) => dispatch(addMovie(movie)),
 })
 
-const NewMovieRow = connect(mapStateToProps, mapDispatchToProps)(AddMovieRow);
+const NewMovieRow = createMovieRowContainer({
+  rowClass: AddMovieRow,
+  mapStateToProps,
+  mapDispatchToProps,
+})
 
 export default NewMovieRow;
