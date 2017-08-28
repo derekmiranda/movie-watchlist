@@ -21,8 +21,8 @@ const AddMovieRow = ({ orderedFields, obj, editNewMovieValue, addMovie }) => {
 AddMovieRow.propTypes = {
   orderedFields: PropTypes.arrayOf(PropTypes.string).isRequired,
   obj: PropTypes.object.isRequired,
-  editNewMovieValue: PropTypes.func,
-  addMovie: PropTypes.func,
+  editNewMovieValue: PropTypes.func.isRequired,
+  addMovie: PropTypes.func.isRequired,
 }
 
 export default AddMovieRow;
