@@ -2,8 +2,14 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import TableHeader from './TableHeader';
 import TableBody from './TableBody';
+import orderedFields from './orderedFields';
 
-const Table = ({ labels, orderedFields, objs, newMovie }) => {
+const capitalizeStrs = (strs) => strs.map(
+  str => str[0].toUpperCase() + str.slice(1)
+);
+
+const Table = ({ objs, newMovie }) => {
+  const labels = capitalizeStrs(orderedFields);
   return (
     <table>
       <TableHeader labels={labels} />
@@ -13,9 +19,8 @@ const Table = ({ labels, orderedFields, objs, newMovie }) => {
 }
 
 Table.propTypes = {
-  labels: PropTypes.arrayOf(PropTypes.string).isRequired,
-  orderedFields: PropTypes.arrayOf(PropTypes.string).isRequired,
   objs: PropTypes.arrayOf(PropTypes.object),
+  newMovie: PropTypes.object,
 }
 
 export default Table;

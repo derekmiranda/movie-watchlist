@@ -14,7 +14,7 @@ const TableBody = ({ orderedFields, objs }) => {
   ));
   
   const newMovieRow = (
-    <NewMovieRow />
+    <NewMovieRow orderedFields={orderedFields}/>
   )
 
   return (

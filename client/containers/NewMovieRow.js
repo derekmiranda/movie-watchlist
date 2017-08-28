@@ -1,10 +1,9 @@
 import { connect } from 'react-redux';
 import AddMovieRow from '../components/AddMovieRow';
-import orderedFields from './orderedFields';
 import { editNewMovieValue } from '../actions/creators';
 
-const mapStateToProps = (state) => ({
-  orderedFields,
+const mapStateToProps = (state, ownProps) => ({
+  orderedFields: ownProps.orderedFields,
   obj: state.newMovie,
 })
 
