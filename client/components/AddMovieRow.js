@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import InputRow from './InputRow';
+import keyPressHandlerCreator from './utils/keyPressHandlerCreator'
 
 const AddMovieRow = ({ orderedFields, obj, editNewMovieValue, addMovie }) => {
   const onClick = () => addMovie(obj);
@@ -9,6 +10,9 @@ const AddMovieRow = ({ orderedFields, obj, editNewMovieValue, addMovie }) => {
   );
 
   const onEnter = event => event.key === 'Enter' && addMovie(obj);
+  const keyPressHandler = keyPressHandlerCreator({
+    Enter: () => addMovie(obj),
+  });
 
   return (
     <InputRow
@@ -16,7 +20,7 @@ const AddMovieRow = ({ orderedFields, obj, editNewMovieValue, addMovie }) => {
       obj={obj}
       extraElems={[addBtn]}
       changeValue={editNewMovieValue}
-      onEnter={onEnter}
+      onKeyPress={keyPressHandler}
     />
   )
 }
