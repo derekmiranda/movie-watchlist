@@ -2,10 +2,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import InputRow from './InputRow';
 
-const AddMovieRow = ({ orderedFields, obj, updateValue }) => {
-  const onClick = () => addMovie(obj);
+const AddMovieRow = ({ orderedFields, obj, updateValue, deleteMovie }) => {
   const removeBtn = (
-    <button onClick={onClick}>Remove</button>
+    <button onClick={deleteMovie}>Remove</button>
   );
 
   return (
@@ -22,6 +21,7 @@ AddMovieRow.propTypes = {
   orderedFields: PropTypes.arrayOf(PropTypes.string).isRequired,
   obj: PropTypes.object.isRequired,
   updateValue: PropTypes.func.isRequired,
+  deleteMovie: PropTypes.func.isRequired,
 }
 
 export default AddMovieRow;
