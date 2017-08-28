@@ -3,14 +3,14 @@ import PropTypes from 'prop-types';
 import InputRow from './InputRow';
 import keyPressHandlerCreator from './utils/keyPressHandlerCreator'
 
-const AddMovieRow = ({ orderedFields, obj, isValid, editNewMovieValue, addMovie }) => {
-  const addValidMovie = () => isValid && addMovie(obj);
+const AddMovieRow = ({ orderedFields, obj, isValid, editNewMovieValue, submitNewMovie }) => {
+  const submitValidNewMovie = () => isValid && submitNewMovie(obj);
   const addBtn = (
-    <button onClick={addValidMovie}>Add</button>
+    <button onClick={submitValidNewMovie}>Add</button>
   );
   const extraRowElems = isValid ? [addBtn] : [];
   const keyPressHandler = keyPressHandlerCreator({
-    Enter: addValidMovie,
+    Enter: submitValidNewMovie,
   });
 
   return (
@@ -29,7 +29,7 @@ AddMovieRow.propTypes = {
   obj: PropTypes.object.isRequired,
   isValid: PropTypes.bool.isRequired,
   editNewMovieValue: PropTypes.func.isRequired,
-  addMovie: PropTypes.func.isRequired,
+  submitNewMovie: PropTypes.func.isRequired,
 }
 
 export default AddMovieRow;

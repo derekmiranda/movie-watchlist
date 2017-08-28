@@ -1,6 +1,6 @@
 import createMovieRowContainer from './createMovieRowContainer';
 import AddMovieRow from '../components/AddMovieRow';
-import { editNewMovieValue, addMovie } from '../actions/creators';
+import { editNewMovieValue, submitNewMovie } from '../actions/creators';
 import { validNewMovie } from '../reducers/newMovie';
 
 const mapStateToProps = (state) => ({
@@ -10,7 +10,7 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch) => ({
   editNewMovieValue: (field, value) => dispatch(editNewMovieValue(field, value)),
-  addMovie: (movie) => dispatch(addMovie(movie)),
+  submitNewMovie: (movie) => dispatch(submitNewMovie(movie)),
 })
 
 const NewMovieRow = createMovieRowContainer({
