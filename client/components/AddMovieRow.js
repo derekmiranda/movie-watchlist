@@ -8,7 +8,7 @@ const AddMovieRow = ({ orderedFields, obj, isValid, editNewMovieValue, addMovie 
   const addBtn = (
     <button onClick={addValidMovie}>Add</button>
   );
-
+  const extraElems = isValid ? [addBtn] : [];
   const keyPressHandler = keyPressHandlerCreator({
     Enter: addValidMovie,
   });
@@ -17,7 +17,7 @@ const AddMovieRow = ({ orderedFields, obj, isValid, editNewMovieValue, addMovie 
     <InputRow
       orderedFields={orderedFields}
       obj={obj}
-      extraElems={[addBtn]}
+      extraElems={extraElems}
       changeValue={editNewMovieValue}
       onKeyPress={keyPressHandler}
     />
