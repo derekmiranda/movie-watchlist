@@ -6,9 +6,13 @@ const mapStateToProps = (state, { idx }) => ({
   obj: state.movies[idx],
 })
 
-const mapDispatchToProps = (dispatch) => ({
-  updateValue: ({ idx, field, value }) => (
-    dispatch(editNewMovieValue({ idx, field, value })
+const mapDispatchToProps = (dispatch, ownProps) => ({
+  changeValue: (field, value) => (
+    dispatch(updateValue({
+      movieIdx: ownProps.idx,
+      field,
+      value
+    })
   )),
 })
 

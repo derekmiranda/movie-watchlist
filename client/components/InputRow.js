@@ -10,7 +10,6 @@ const InputRow = ({ orderedFields, obj, extraElems, changeValue }) => {
       const newValue = event.target.value;
       return changeValue(field, newValue);
     }
-    
     return (
       <input name={field} value={value} onChange={onChange}/>
     )
