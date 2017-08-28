@@ -36,6 +36,7 @@ InputRow.propTypes = {
   obj: PropTypes.object.isRequired,
   idx: PropTypes.number,
   extraElems: PropTypes.arrayOf(PropTypes.element),
+  changeValue: PropTypes.func.isRequired,
 }
 
 export default InputRow;
