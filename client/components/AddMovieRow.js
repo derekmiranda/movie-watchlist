@@ -3,8 +3,9 @@ import PropTypes from 'prop-types';
 import InputRow from './InputRow';
 
 const AddMovieRow = ({ orderedFields, obj, editNewMovieValue, addMovie }) => {
+  const onClick = () => addMovie(obj);
   const addBtn = (
-    <button onClick={addMovie}>Add</button>
+    <button onClick={onClick}>Add</button>
   );
 
   return (
