@@ -2,8 +2,13 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 
-const InputRow = ({ orderedFields, obj, extraElems, changeValue }) => {
-
+const InputRow = ({
+  orderedFields,
+  obj,
+  extraElems,
+  changeValue,
+  onEnter = () => {}
+}) => {
   const fieldToInput = (field) => {
     const value = obj[field];
     const onChange = (event) => {
@@ -11,7 +16,13 @@ const InputRow = ({ orderedFields, obj, extraElems, changeValue }) => {
       return changeValue(field, newValue);
     }
     return (
-      <input name={field} value={value} onChange={onChange}/>
+      <input
+        type='text'
+        name={field}
+        value={value}
+        onChange={onChange}
+        onKeyPress={onEnter}  
+      />
     )
   }
 
@@ -36,6 +47,7 @@ InputRow.propTypes = {
   idx: PropTypes.number,
   extraElems: PropTypes.arrayOf(PropTypes.element),
   changeValue: PropTypes.func.isRequired,
+  onEnter: PropTypes.func,
 }
 
 export default InputRow;

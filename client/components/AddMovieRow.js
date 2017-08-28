@@ -8,12 +8,15 @@ const AddMovieRow = ({ orderedFields, obj, editNewMovieValue, addMovie }) => {
     <button onClick={onClick}>Add</button>
   );
 
+  const onEnter = event => event.key === 'Enter' && addMovie(obj);
+
   return (
     <InputRow
       orderedFields={orderedFields}
       obj={obj}
       extraElems={[addBtn]}
       changeValue={editNewMovieValue}
+      onEnter={onEnter}
     />
   )
 }
