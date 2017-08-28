@@ -22,4 +22,6 @@ const newMovie = (state = defaultMovie, action = {}) => {
   }
 }
 
+export const validNewMovie = ({ newMovie }) => !!newMovie.title;
+
 export default newMovie;
