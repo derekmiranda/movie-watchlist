@@ -1,5 +1,5 @@
 import createMovieRowContainer from './createMovieRowContainer';
-import InputRow from '../components/InputRow';
+import UpdateMovieRow from '../components/UpdateMovieRow';
 import { updateValue } from '../actions/creators';
 
 const mapStateToProps = (state, { idx }) => ({
@@ -7,7 +7,7 @@ const mapStateToProps = (state, { idx }) => ({
 })
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
-  changeValue: (field, value) => (
+  updateValue: (field, value) => (
     dispatch(updateValue({
       movieIdx: ownProps.idx,
       field,
@@ -17,7 +17,7 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
 })
 
 const MovieRow = createMovieRowContainer({
-  rowClass: InputRow,
+  rowClass: UpdateMovieRow,
   mapStateToProps,
   mapDispatchToProps,
 })
