@@ -1,13 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-
 const InputRow = ({
   orderedFields,
   obj,
   extraElems,
   changeValue,
-  onEnter = () => {}
+  onKeyPress = () => {}
 }) => {
   const fieldToInput = (field) => {
     const value = obj[field];
@@ -21,7 +20,7 @@ const InputRow = ({
         name={field}
         value={value}
         onChange={onChange}
-        onKeyPress={onEnter}  
+        onKeyPress={onKeyPress}  
       />
     )
   }
@@ -47,7 +46,7 @@ InputRow.propTypes = {
   idx: PropTypes.number,
   extraElems: PropTypes.arrayOf(PropTypes.element),
   changeValue: PropTypes.func.isRequired,
-  onEnter: PropTypes.func,
+  onKeyPress: PropTypes.func,
 }
 
 export default InputRow;
