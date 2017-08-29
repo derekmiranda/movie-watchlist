@@ -1,11 +1,14 @@
 const Sequelize = require('sequelize');
+const dbConfigMap = require('../../config/db.json');
+const dbConfig = dbConfigMap[process.env.NODE_ENV] || dbConfigMap.development;
+
 const {
   host,
   dialect,
   username,
   password,
   database,
-} = require('../../config/db.json');
+} = dbConfig;
 
 const sequelize = new Sequelize({
   host,
