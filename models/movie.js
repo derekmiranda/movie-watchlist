@@ -1,13 +1,26 @@
 module.exports = function(sequelize, DataTypes) {
+  const makeStringDefn = () => ({
+    type: DataTypes.STRING,
+    defaultValue: ''
+  })
+
   const Movie = sequelize.define('movie', {
+    id: {
+      type: DataTypes.INTEGER,
+      autoIncrement: true,
+      primaryKey: true,
+    },
     title: {
       type: DataTypes.STRING,
-      validate: { notEmpty: true },
+      allowNull: false,
+      validate: {
+        notEmpty: true,
+      },
     },
-    director: DataTypes.STRING,
-    genres: DataTypes.STRING,
-    actors: DataTypes.STRING,
-    notes: DataTypes.STRING,
+    director: makeStringDefn(),
+    genres: makeStringDefn(),
+    actors: makeStringDefn(),
+    notes: makeStringDefn(),
   })
 
   return Movie;
