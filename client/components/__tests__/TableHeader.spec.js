@@ -3,7 +3,7 @@ import test from 'ava';
 import { shallow } from 'enzyme';
 import TableHeader from '../TableHeader';
 
-const headerWrap = shallow(<TableHeader />);
+const headerWrap = shallow(<TableHeader labels={['a', 'b']} />);
 
 test('should render a thead', t => {
   const theadWrap = headerWrap.find('thead');
