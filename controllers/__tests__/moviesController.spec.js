@@ -1,27 +1,29 @@
 import test from 'ava';
-import _ from 'lodash';
+import sinon from 'sinon';
 import moviesController from '../moviesController';
 import db from '../../models';
 
-test.beforeEach('Sync db', async t => {
-  await db.syncPromise();
+const movies = [
+  { title: 'Star Wars' },
+  { title: 'Annie Hall' },
+  { title: 'Reservoir Dogs' },
+]
+
+test.beforeEach('Set up stubs', t => {
+  const findAllStub = sinon.stub(db.movie, 'findAll');
+  t.context.findAllStub = findAllStub;
 })
 
-test('should contain given methods', t => {
-  const methods = [
-    'getMovies',
-    'postMovie',
-    'updateMovies',
-    'removeMovie',
-  ]
+test.afterEach('Restore stubs', t => {
+  t.context.findAllStub.restore()
+})
 
-  methods.forEach((method) => {
-    t.true(method in moviesController);
-    t.is(typeof moviesController[method], 'function');
+test('can get all movies', async t => {
+  t.context.findAllStub.withArgs({}).resolves(movies);
+  const foundMovies = await moviesController.getMovies({});
+  
+  movies.forEach((movie, i) => {
+    const foundMovie = foundMovies[i];
+    t.is(movie.title, foundMovie.title);
   })
-})
-
-test.afterEach(async t => {
-  // clear database for next test
-  await db.sequelize.sync({ force: true });
 })
