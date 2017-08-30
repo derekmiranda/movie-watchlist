@@ -19,7 +19,7 @@ const Table = ({ objs, newMovie }) => {
 }
 
 Table.propTypes = {
-  objs: PropTypes.arrayOf(PropTypes.object),
+  objs: PropTypes.arrayOf(PropTypes.object).isRequired,
   newMovie: PropTypes.object,
 }
 
