@@ -13,6 +13,7 @@
     "wds": "NODE_ENV=development webpack-dev-server --progress"
   },
   "dependencies": {
+    "body-parser": "^1.17.2",
     "express": "^4.15.2",
     "node-sass": "^4.5.2",
     "pg": "^7.2.0",
