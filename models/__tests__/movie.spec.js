@@ -6,6 +6,11 @@ test.beforeEach('Initialize db', async t => {
   await db.syncPromise();
 })
 
+test.afterEach(async t => {
+  // clear database for next test
+  await db.sequelize.sync({ force: true });
+})
+
 test.serial('db should authenticate', t => {
   const { sequelize } = db;
   sequelize.authenticate()
@@ -61,6 +66,14 @@ test.serial('should default non-title values to empty string', async t => {
   }
 })
 
+test('should have unique titles', async t => {
+  const Movie = db.movie;
+  await t.throws(Movie.bulkCreate([
+    { title: 'It' },
+    { title: 'It' },
+  ]))
+})
+
 const movieThrowsMacro = async (t, obj) => {
   const Movie = db.movie;
   await t.throws(Movie.create(obj));
@@ -68,8 +81,3 @@ const movieThrowsMacro = async (t, obj) => {
 
 test.serial('should require a non-empty title', movieThrowsMacro, { title: '' });
 test.serial('should require a non-null title', movieThrowsMacro, {});
-
-test.afterEach(async t => {
-  // clear database for next test
-  await db.sequelize.sync({ force: true });
-})
