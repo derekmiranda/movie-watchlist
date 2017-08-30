@@ -2,7 +2,7 @@ import React from 'react';
 import test from 'ava';
 import { shallow } from 'enzyme';
 import TableBody from '../TableBody';
-import InputRow from '../InputRow';
+import MovieRow from '../../containers/MovieRow';
 
 const emptyBodyCtx = () => {
   const orderedFields = ['a', 'b', 'c'];
@@ -29,10 +29,8 @@ test('should at least render a tbody', t => {
   t.is(tbodyWrap.length, 1);
 })
 
-test('should render an InputRow for each obj', t => {
+test('should render an MovieRow for each obj', t => {
   const { objs, bodyWrap } = filledBodyCtx();
-  const rowWrap = bodyWrap.find(InputRow);
+  const rowWrap = bodyWrap.find(MovieRow);
   t.is(rowWrap.length, objs.length);
 })
-
-test.todo('should pass correct idx, orderedorderedFields, and obj to each InputRow')
