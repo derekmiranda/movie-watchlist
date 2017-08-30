@@ -1,9 +1,14 @@
 import test from 'ava';
-import db from '../../models';
 import moviesController from '../moviesController';
 
+test.beforeEach('Initialize db', async t => {
+  const dbPromise = require('../../models')
+  const db = await dbPromise;
+  t.context.db = db;
+})
+
 test('db should authenticate', t => {
-  const { sequelize } = db;
+  const { sequelize } = t.context.db;
   sequelize
     .authenticate()
     .then(t.pass())
@@ -24,11 +29,10 @@ test('should contain given methods', t => {
   })
 })
 
-test.only('can get all movies', async function(t) {
-  const Movie = db.movie;
+test.only('can get all movies', async t => {
+  const Movie = t.context.db.movie;
   try {
     const movies = await Movie.findAll();
-    console.log('movies:', movies);
     t.pass();
   } catch (err) {
     throw err;
