@@ -1,14 +1,13 @@
 import test from 'ava';
 import _ from 'lodash';
+import db from '..';
 
 test.beforeEach('Initialize db', async t => {
-  const dbPromise = require('..');
-  const db = await dbPromise;
-  t.context.db = db;
+  await db.syncPromise();
 })
 
 test.serial('db should authenticate', t => {
-  const { sequelize } = t.context.db;
+  const { sequelize } = db;
   sequelize.authenticate()
     .then(t.pass())
     .catch(err => { throw err; })
@@ -19,7 +18,7 @@ test.serial('can get all movies', async t => {
     { title: 'Toy Story' },
     { title: 'Toy Story 2' },
   ];
-  const Movie = t.context.db.movie;
+  const Movie = db.movie;
   try {
     const res = await Movie.bulkCreate(movies);
     const foundMovies = await Movie.findAll();
@@ -42,7 +41,7 @@ test.serial('should default non-title values to empty string', async t => {
   const movie = {
     title: 'Toy Story'
   };
-  const Movie = t.context.db.movie;
+  const Movie = db.movie;
   try {
     const res = await Movie.create(movie);
     const firstMovie = await Movie.find();
@@ -63,7 +62,7 @@ test.serial('should default non-title values to empty string', async t => {
 })
 
 const movieThrowsMacro = async (t, obj) => {
-  const Movie = t.context.db.movie;
+  const Movie = db.movie;
   await t.throws(Movie.create(obj));
 }
 
@@ -72,5 +71,5 @@ test.serial('should require a non-null title', movieThrowsMacro, {});
 
 test.afterEach(async t => {
   // clear database for next test
-  await t.context.db.sequelize.sync({ force: true });
+  await db.sequelize.sync({ force: true });
 })
