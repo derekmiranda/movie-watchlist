@@ -4,10 +4,10 @@ const moviesController = {};
 
 moviesController.getMovies = (queryObj) => {
   const Movie = db.movie;
-  return Movie.findAll(queryObj)
+  return Movie.findAll(queryObj);
 }
 
-moviesController.postMovie = () => {}
+moviesController.addMovie = () => {}
 moviesController.updateMovies = () => {}
 moviesController.removeMovie = () => {}
 
