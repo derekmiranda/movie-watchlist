@@ -27,3 +27,7 @@ test('can get all movies', async t => {
     t.is(movie.title, foundMovie.title);
   })
 })
+
+test.skip('can add movie');
+test.skip('can remove movie');
+test.skip('can update movies');
