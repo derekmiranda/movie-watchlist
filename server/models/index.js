@@ -9,7 +9,7 @@ const sequelize = new Sequelize(dbConfig);
 const db = {};
 
 fs.readdirSync(__dirname)
-  .filter(file => file.startsWith('.') && file !== 'index.js')
+  .filter(file => !file.startsWith('.') && !file.startsWith('_') && file !== 'index.js' )
   .forEach((file) => {
     const model = sequelize.import(path.join(__dirname, file));
     db[model.name] = model;

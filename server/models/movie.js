@@ -1,14 +1,14 @@
 module.exports = function(sequelize, DataTypes) {
-  const User = sequelize.define('user', {
+  const Movie = sequelize.define('movie', {
     title: {
-      type: DataTypes.string,
+      type: DataTypes.STRING,
       validate: { notEmpty: true },
     },
-    director: DataTypes.string,
-    genres: DataTypes.string,
-    actors: DataTypes.string,
-    notes: DataTypes.string,
+    director: DataTypes.STRING,
+    genres: DataTypes.STRING,
+    actors: DataTypes.STRING,
+    notes: DataTypes.STRING,
   })
 
-  return User;
+  return Movie;
 }
