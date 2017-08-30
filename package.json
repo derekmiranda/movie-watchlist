@@ -6,8 +6,8 @@
   "author": "Derek Miranda <derek.miranda.1992@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "start": "node server",
-    "devstart": "NODE_ENV=development nodemon server",
+    "start": "NODE_ENV=production node app",
+    "devstart": "NODE_ENV=development nodemon app",
     "test": "NODE_ENV=test ava",
     "build": "NODE_ENV=production webpack",
     "wds": "NODE_ENV=development webpack-dev-server --progress"
