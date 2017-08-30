@@ -1,4 +1,6 @@
+const _ = require('lodash');
 const db = require('../models');
+const { whitelist } = require('../models/movie');
 
 const moviesController = {};
 const Movie = db.movie;
@@ -11,7 +13,21 @@ moviesController.addMovie = (movie) => {
   return Movie.create(movie);
 }
 
-moviesController.updateMovies = (movies) => {}
-moviesController.removeMovie = () => {}
+moviesController.updateMovie = (movie) => {
+  const { id } = movie;
+
+  return Movie.update({
+    where: { id },
+    fields: _.pick(movie, whitelist),
+  })
+}
+
+moviesController.removeMovie = (movie) => {
+  const { id } = movie;
+
+  return Movie.remove({
+    where: { id },
+  })
+}
 
 module.exports = moviesController;
