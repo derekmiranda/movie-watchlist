@@ -1,0 +1,14 @@
+{
+  "development": {
+    "username": "user",
+    "password": "pw",
+    "database": "movie_watchlist",
+    "host": "localhost",
+    "dialect": "postgres"
+  },
+  "test": {
+    "dialect": "sqlite",
+    "storage": ":memory:",
+    "logging": false
+  }
+}
