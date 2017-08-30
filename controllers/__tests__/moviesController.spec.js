@@ -77,15 +77,13 @@ test.serial('should default non-title values to empty string', async t => {
   }
 })
 
-test.serial('should require a non-empty title', async t => {
+const movieThrowsMacro = async (t, obj) => {
   const Movie = t.context.db.movie;
-  await t.throws(Movie.create({ title: '' }));
-})
+  await t.throws(Movie.create(obj));
+}
 
-test.serial('should require a non-null title', async t => {
-  const Movie = t.context.db.movie;
-  await t.throws(Movie.create({}));
-})
+test.serial('should require a non-empty title', movieThrowsMacro, { title: '' });
+test.serial('should require a non-null title', movieThrowsMacro, {});
 
 test.afterEach(async t => {
   // clear database for next test
