@@ -18,8 +18,6 @@ fs.readdirSync(__dirname)
   
 db.sequelize = sequelize;
 db.Sequelize = Sequelize;
-db.syncPromise = () => sequelize.sync()
-  .then(() => console.log('DB synced'))
-  .catch((err) => { throw err; });
+db.syncPromise = () => sequelize.sync();
 
 module.exports = db;
