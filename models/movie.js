@@ -26,11 +26,3 @@ module.exports = function(sequelize, DataTypes) {
 
   return Movie;
 }
-
-module.exports.whitelist = [
-  'title',
-  'director',
-  'genres',
-  'actors',
-  'notes',
-]
