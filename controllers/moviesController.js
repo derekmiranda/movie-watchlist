@@ -20,7 +20,7 @@ moviesController.updateMovie = (id, movie) => {
 }
 
 moviesController.removeMovie = (id) => {
-  return Movie.remove({
+  return Movie.destroy({
     where: { id },
   })
 }
