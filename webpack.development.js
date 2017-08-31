@@ -1,4 +1,6 @@
 const path = require('path');
+require('dotenv').load({ path: path.join(__dirname, 'config', `.${process.env.NODE_ENV}_env`) });
+
 const webpack = require('webpack');
 
 const WDS_PORT = 8000;
