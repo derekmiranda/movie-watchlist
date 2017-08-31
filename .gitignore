@@ -3,6 +3,7 @@ node_modules
 *.log
 .DS_Store
 *.sqlite
+.*env
 
 # Ignore config files except for samples
 config/*
