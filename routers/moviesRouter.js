@@ -5,30 +5,40 @@ const moviesRouter = express.Router();
 
 const errorResponse = ({ res, err, statusCode }) => res.status(statusCode).json(err);
 const JSONFormat = data => JSON.stringify(data, null, 4);
+
 const formattedJSONResponse = (res, data) => (
   res
     .header('Content-Type', 'application/json')
     .end(JSONFormat(data))
 );
 
-moviesRouter.get('/', (req, res) => moviesController.getMovies()
-  .then(movies => formattedJSONResponse(res, movies))
-  .catch(err => errorResponse({ res, err, statusCode: 500 }))
-);
+const makeControllerMiddleware = (controllerPromiseFn, ...controllerFnArgs) => {
+  return (req, res) => (
+    controllerPromiseFn(...controllerFnArgs)
+      .then(result => formattedJSONResponse(res, result))
+      .catch(err => errorResponse({ res, err, statusCode: 500 }))
+  )
+}
 
-moviesRouter.post('/', (req, res) => {
+moviesRouter.get('/', makeControllerMiddleware(moviesController.getMovies));
+
+moviesRouter.post('/', (req, res, next) => {
   const { movie } = req.body;
-  return moviesController.addMovie(movie)
-    .then(created => formattedJSONResponse(res, created))
-    .catch(err => errorResponse({ res, err, statusCode: 500 }))
-})
+  const middleware = makeControllerMiddleware(moviesController.addMovie, movie);
+  return middleware(req, res, next);
+});
 
-moviesRouter.patch('/:id', (req, res) => {
+moviesRouter.patch('/:id', (req, res, next) => {
   const { id } = req.params;
   const { movie } = req.body;
-  return moviesController.updateMovie(id, movie)
-    .then(result => formattedJSONResponse(result))
-    .catch(err => errorResponse({ res, err, statusCode: 500 }))
-})
+  const middleware = makeControllerMiddleware(moviesController.updateMovie, id, movie);
+  return middleware(req, res, next);
+});
+
+moviesRouter.delete('/:id', (req, res, next) => {
+  const { id } = req.params;
+  const middleware = makeControllerMiddleware(moviesController.removeMovie, id);
+  return middleware(req, res, next);
+});
 
 module.exports = moviesRouter;
