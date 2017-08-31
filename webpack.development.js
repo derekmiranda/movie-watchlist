@@ -1,9 +1,13 @@
 const path = require('path');
-require('dotenv').load({ path: path.join(__dirname, 'config', `.${process.env.NODE_ENV}_env`) });
-
+const loadedEnv = require('dotenv').load(
+  { path: path.join(__dirname, 'config', `.${process.env.NODE_ENV}_env`) }
+);
 const webpack = require('webpack');
 
-const WDS_PORT = 8000;
+const loadedEnvVars = Object.keys(loadedEnv.parsed).reduce((accum, key) => {
+  accum[key] = JSON.stringify(loadedEnv.parsed[key]);
+  return accum;
+}, {});
 
 module.exports = {
   entry: [
@@ -17,10 +21,9 @@ module.exports = {
   plugins: [
     new webpack.HotModuleReplacementPlugin(),
     new webpack.DefinePlugin({
-      'process.env': {
+      'process.env': Object.assign({
         NODE_ENV: JSON.stringify(process.env.NODE_ENV),
-        API_URL: 'localhost:3000/movies',
-      },
+      }, loadedEnvVars),
     }),
   ],
   module: {
