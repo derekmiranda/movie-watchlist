@@ -6,25 +6,20 @@ const moviesController = {};
 const Movie = db.movie;
 
 moviesController.getMovies = (queryObj = {}) => {
-  return Movie.findAll({ where: queryObj });
+  return Movie.findAll({ where: queryObj, order: ['id'] });
 }
 
 moviesController.addMovie = (movie) => {
   return Movie.create(movie);
 }
 
-moviesController.updateMovie = (movie) => {
-  const { id } = movie;
-
-  return Movie.update({
+moviesController.updateMovie = (id, movie) => {
+  return Movie.update(movie, {
     where: { id },
-    fields: _.pick(movie, whitelist),
   })
 }
 
-moviesController.removeMovie = (movie) => {
-  const { id } = movie;
-
+moviesController.removeMovie = (id) => {
   return Movie.remove({
     where: { id },
   })
