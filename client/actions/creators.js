@@ -31,3 +31,8 @@ export const submitNewMovie = (movie) => [
   addMovie(movie),
   clearNewMovie(),
 ]
+
+export const fetchSucceeded = (data) => ({
+  type: types.FETCH_SUCCEEDED,
+  data,
+}) 
