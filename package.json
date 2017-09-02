@@ -26,6 +26,7 @@
     "redux": "^3.7.2",
     "redux-batched-subscribe": "^0.1.6",
     "redux-multi": "^0.1.12",
+    "redux-saga": "^0.15.6",
     "sequelize": "^4.7.5"
   },
   "devDependencies": {
