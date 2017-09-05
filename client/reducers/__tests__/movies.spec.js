@@ -1,6 +1,11 @@
 import test from 'ava';
 import movies, { movie } from '../movies';
-import { addMovie, deleteMovie, updateValue } from '../../actions/creators';
+import {
+  addMovie,
+  deleteMovie,
+  updateValue,
+  fetchSucceeded
+} from '../../actions/creators';
 
 const sampleMovie = {
   title: 'Toy Story',
@@ -44,3 +49,16 @@ test('can update value in previously saved movie', t => {
 
   t.deepEqual(expected, actual);
 });
+
+test('should load in fetched movies before newly saved movies', t => {
+  const initState = [ {...sampleMovie } ];
+  const fetchedMovies = [
+    {...sampleMovie, title: 'Toy Story 2'},
+    {...sampleMovie, title: 'Toy Story 3', notes: 'Deus Ex Green Men'},
+  ];
+
+  t.deepEqual(
+    fetchedMovies.concat(initState),
+    movies(initState, fetchSucceeded(fetchedMovies))
+  )
+})

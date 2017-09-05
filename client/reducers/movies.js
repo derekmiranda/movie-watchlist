@@ -1,4 +1,4 @@
-import { ADD_MOVIE, DELETE_MOVIE, UPDATE_VALUE } from '../actions/types';
+import { ADD_MOVIE, DELETE_MOVIE, UPDATE_VALUE, FETCH_SUCCEEDED } from '../actions/types';
 
 const defaultMovie = {
   title: '',
@@ -38,6 +38,10 @@ const movies = (state = [], action = {}) => {
         return idx === movieIdx ? movie(origMovie, action) : origMovie;
       }
       return state.map(updateTargetMovie);
+    }
+    case FETCH_SUCCEEDED: {
+      const movies = action.data;
+      return movies.concat(state);
     }
     default:
       return state;

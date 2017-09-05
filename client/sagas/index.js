@@ -1,6 +1,6 @@
 import { call, put, takeLatest } from 'redux-saga/effects';
 
-import { fetchMovies } from '../services/moviesService';
+import { fetchMovies } from '../services/moviesApi';
 import { FETCH_STARTED } from '../actions/types';
 import { fetchSucceeded } from '../actions/creators';
 
