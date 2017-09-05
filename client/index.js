@@ -4,11 +4,17 @@ import { createStore, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
 import reduxMulti from 'redux-multi';
 import { batchedSubscribe } from 'redux-batched-subscribe';
+import createSagaMiddleware from 'redux-saga';
+
 import App from './components/App';
 import rootReducer from './reducers';
+import rootSaga from './sagas';
+
+const sagaMiddleware = createSagaMiddleware();
 
 const middleware = [
-  reduxMulti,  
+  reduxMulti,
+  sagaMiddleware,
 ];
 
 if (process.env.NODE_ENV === 'development') {
@@ -17,8 +23,9 @@ if (process.env.NODE_ENV === 'development') {
 }
 
 const createStoreWithMiddleware = applyMiddleware(...middleware)(createStore);
-const finalCreateStore = batchedSubscribe(fn => fn())(createStoreWithMiddleware);
-const store = finalCreateStore(rootReducer);
+const batchedCreateStore = batchedSubscribe(fn => fn())(createStoreWithMiddleware);
+const store = batchedCreateStore(rootReducer);
+sagaMiddleware.run(rootSaga);
 
 ReactDom.render(
   <Provider store={store}>
