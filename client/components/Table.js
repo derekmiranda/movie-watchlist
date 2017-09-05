@@ -8,12 +8,17 @@ const capitalizeStrs = (strs) => strs.map(
   str => str[0].toUpperCase() + str.slice(1)
 );
 
-const Table = ({ objs, newMovie }) => {
+const Table = ({ objs, newMovie, fetching }) => {
   const labels = capitalizeStrs(orderedFields);
   return (
     <table>
       <TableHeader labels={labels} />
-      <TableBody orderedFields={orderedFields} objs={objs} newMovie={newMovie} />
+      <TableBody
+        orderedFields={orderedFields}
+        objs={objs}
+        newMovie={newMovie}
+        fetching={fetching}
+      />
     </table>
   )
 }

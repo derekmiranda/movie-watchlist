@@ -7,6 +7,7 @@ import { fetchStarted } from '../actions/creators';
 const mapStateToProps = (state) => ({
   objs: state.movies,
   newMovie: state.newMovie,
+  fetching: state.fetching,
 })
 
 const mapDispatchToProps = (dispatch) => ({
