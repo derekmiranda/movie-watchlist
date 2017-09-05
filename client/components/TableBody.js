@@ -1,9 +1,19 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+
 import MovieRow from '../containers/MovieRow';
 import NewMovieRow from '../containers/NewMovieRow';
 
-const TableBody = ({ orderedFields, objs }) => {
+const TableBody = ({ orderedFields, objs, fetching }) => {
+
+  const loadingMsg = (
+    <tr>
+      <td style={{ textAlign: 'center' }} colSpan={5}>
+        <p>Loading...</p>
+      </td>
+    </tr>
+  )
+
   const addedMovieRows = objs.map((obj, i) => (
     <MovieRow
       key={i}
@@ -18,7 +28,7 @@ const TableBody = ({ orderedFields, objs }) => {
 
   return (
     <tbody>
-      {addedMovieRows}
+      {fetching ? loadingMsg : addedMovieRows}
       {newMovieRow}
     </tbody>
   )
