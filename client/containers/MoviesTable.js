@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+
 import Table from '../components/Table';
-import moviesService from '../services/moviesService';
+import { fetchStarted } from '../actions/creators';
 
 const mapStateToProps = (state) => ({
   objs: state.movies,
@@ -9,16 +10,13 @@ const mapStateToProps = (state) => ({
 })
 
 const mapDispatchToProps = (dispatch) => ({
-  receivedMovies: () => dispatch(),
+  fetchMovies: () => dispatch(fetchStarted()),
 })
 
 class FetchTable extends Component {
   
   componentDidMount() {
-    async function fetchMovies() {
-      const movies = await moviesService.fetchMovies();
-    }
-    fetchMovies();
+    this.props.fetchMovies();
   }
 
   render() {
@@ -28,6 +26,6 @@ class FetchTable extends Component {
   }
 }
 
-const MoviesTable = connect(mapStateToProps)(FetchTable);
+const MoviesTable = connect(mapStateToProps, mapDispatchToProps)(FetchTable);
 
 export default MoviesTable;
