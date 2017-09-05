@@ -22,9 +22,7 @@ if (process.env.NODE_ENV === 'development') {
   middleware.push(logger);
 }
 
-const createStoreWithMiddleware = applyMiddleware(...middleware)(createStore);
-const batchedCreateStore = batchedSubscribe(fn => fn())(createStoreWithMiddleware);
-const store = batchedCreateStore(rootReducer);
+const store = createStore(rootReducer, applyMiddleware(...middleware));
 sagaMiddleware.run(rootSaga);
 
 ReactDom.render(
