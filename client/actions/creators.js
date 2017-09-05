@@ -27,12 +27,17 @@ export const clearNewMovie = () => ({
   type: types.CLEAR_NEW_MOVIE,
 })
 
+
 export const submitNewMovie = (movie) => [
   addMovie(movie),
   clearNewMovie(),
 ]
 
+export const fetchStarted = () => ({
+  type: types.FETCH_STARTED,
+})
+
 export const fetchSucceeded = (data) => ({
   type: types.FETCH_SUCCEEDED,
   data,
-}) 
+})
