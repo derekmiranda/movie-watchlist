@@ -1,4 +1,5 @@
 const _ = require('lodash');
+
 const db = require('../models');
 const { whitelist } = require('../models/movie');
 
@@ -11,6 +12,11 @@ moviesController.getMovies = (queryObj = {}) => {
 
 moviesController.addMovie = (movie) => {
   return Movie.create(movie);
+}
+
+moviesController.updateMovies = (id, movies) => {
+  const updatePromises = movies.map(movie => moviesController.updateMovie(movie));
+  return Promise.all(updatePromises);
 }
 
 moviesController.updateMovie = (id, movie) => {
