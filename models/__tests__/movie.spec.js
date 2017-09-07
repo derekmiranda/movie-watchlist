@@ -1,15 +1,10 @@
 import test from 'ava';
 import _ from 'lodash';
-import db from '..';
 
-test.beforeEach('Initialize db', async t => {
-  await db.syncPromise();
-})
+import db from '../index';
+import { avaDbSetup } from '../../utils/tests';
 
-test.afterEach(async t => {
-  // clear database for next test
-  await db.sequelize.sync({ force: true });
-})
+avaDbSetup(test);
 
 test.serial('db should authenticate', t => {
   const { sequelize } = db;
