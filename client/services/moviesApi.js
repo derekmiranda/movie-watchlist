@@ -4,13 +4,9 @@ export const fetchMovies = () => {
 }
 
 export const updateMovies = (movies) => {
-  const patchPromises = movies.map((movie) => {
-    return fetch(process.env.MOVIES_API_URL, {
-      method: 'PATCH',
-      body: movie,
-    })
-      .then(res => res.json())
+  return fetch(process.env.MOVIES_API_URL, {
+    method: 'PATCH',
+    body: movies,
   })
-
-  return Promise.all(patchPromises);
+    .then(res => res.json())
 }
