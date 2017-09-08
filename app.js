@@ -4,10 +4,6 @@ const bodyParser = require('body-parser');
 const moviesRouter = require('./routers/moviesRouter');
 const db = require('./models');
 
-db.syncPromise()
-  .then(() => console.log('DB synced'))
-  .catch((err) => { throw err; });
-
 const PORT = process.env.PORT || 3000;
 const app = express();
 

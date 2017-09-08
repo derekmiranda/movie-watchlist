@@ -1,9 +1,7 @@
 'use strict';
 module.exports = function(sequelize, DataTypes) {
-  var Movie = sequelize.define('Movie', {
+  var Person = sequelize.define('Person', {
     id: DataTypes.INTEGER,
-    user_id: DataTypes.INTEGER,
-    title: DataTypes.STRING,
     notes: DataTypes.STRING
   }, {
     classMethods: {
@@ -12,5 +10,5 @@ module.exports = function(sequelize, DataTypes) {
       }
     }
   });
-  return Movie;
+  return Person;
 };
