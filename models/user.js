@@ -5,7 +5,11 @@ module.exports = function(sequelize, DataTypes) {
     passHash: DataTypes.STRING,
     firstName: DataTypes.STRING,
     lastName: DataTypes.STRING,
-    id: DataTypes.INTEGER,
+    id: {
+      type: DataTypes.INTEGER,
+      autoIncrement: true,
+      primaryKey: true,
+    },
     email: DataTypes.STRING
   }, {
     classMethods: {
