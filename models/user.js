@@ -1,6 +1,11 @@
 'use strict';
 module.exports = function(sequelize, DataTypes) {
   var User = sequelize.define('User', {
+    id: {
+      type: DataTypes.INTEGER,
+      autoIncrement: true,
+      primaryKey: true,
+    },
     username: {
       type: DataTypes.STRING,
       unique: true,
@@ -12,18 +17,19 @@ module.exports = function(sequelize, DataTypes) {
     passHash: DataTypes.STRING,
     firstName: DataTypes.STRING,
     lastName: DataTypes.STRING,
-    id: {
-      type: DataTypes.INTEGER,
-      autoIncrement: true,
-      primaryKey: true,
+    email: {
+      type: DataTypes.STRING,
+      validate: {
+        isEmail: true,
+      }
     },
-    email: DataTypes.STRING
   }, {
     classMethods: {
       associate: function(models) {
         User.hasMany(models.Movie);
       }
-    }
+    },
+    // validation instance method(s)
   });
   return User;
 };
