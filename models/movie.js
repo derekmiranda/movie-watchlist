@@ -6,11 +6,6 @@ module.exports = function(sequelize, DataTypes) {
   })
 
   const Movie = sequelize.define('Movie', {
-    id: {
-      type: DataTypes.INTEGER,
-      autoIncrement: true,
-      primaryKey: true,
-    },
     title: {
       type: DataTypes.STRING,
       allowNull: false,
