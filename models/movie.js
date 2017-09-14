@@ -1,10 +1,28 @@
 'use strict';
 module.exports = function(sequelize, DataTypes) {
-  var Movie = sequelize.define('Movie', {
-    id: DataTypes.INTEGER,
-    user_id: DataTypes.INTEGER,
-    title: DataTypes.STRING,
-    notes: DataTypes.STRING
+  const makeStringDefn = () => ({
+    type: DataTypes.STRING,
+    defaultValue: ''
+  })
+
+  const Movie = sequelize.define('Movie', {
+    id: {
+      type: DataTypes.INTEGER,
+      autoIncrement: true,
+      primaryKey: true,
+    },
+    title: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      unique: true,
+      validate: {
+        notEmpty: true,
+      },
+    },
+    director: makeStringDefn(),
+    genres: makeStringDefn(),
+    actors: makeStringDefn(),
+    notes: makeStringDefn(),
   }, {
     classMethods: {
       associate: function(models) {
