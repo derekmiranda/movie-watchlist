@@ -1,33 +1,30 @@
 import test from 'ava';
-import sinon from 'sinon';
+
 import moviesController from '../moviesController';
 import db from '../../models';
+import { avaDbSetup } from '../../utils/tests';
+
+avaDbSetup(test);
 
 const movies = [
-  { title: 'Star Wars' },
-  { title: 'Annie Hall' },
-  { title: 'Reservoir Dogs' },
+  { id: 1, title: 'Star Wars' },
+  { id: 2, title: 'Annie Hall' },
+  { id: 3, title: 'Reservoir Dogs' },
 ]
 
-test.beforeEach('Set up stubs', t => {
-  const findAllStub = sinon.stub(db.movie, 'findAll');
-  t.context.findAllStub = findAllStub;
+test('can update multiple movies', async t => {
+  await db.Movie.bulkCreate(movies)
+  const updates = [
+    { id: 1, title: 'Star War' },
+    { id: 3, title: 'Reservoir Cats' },
+  ]
+  const updateResults = await moviesController.updateMovies(updates);
+  t.deepEqual(updateResults, [[1], [1]]);
+  const foundMovies = await db.Movie.findAll();
+  const movieTitles = foundMovies.map(movie => movie.title);
+  t.deepEqual(movieTitles, ['Star War', 'Annie Hall', 'Reservoir Cats']);
 })
 
-test.afterEach('Restore stubs', t => {
-  t.context.findAllStub.restore()
-})
-
-test('can get all movies', async t => {
-  t.context.findAllStub.withArgs({}).resolves(movies);
-  const foundMovies = await moviesController.getMovies({});
-  
-  movies.forEach((movie, i) => {
-    const foundMovie = foundMovies[i];
-    t.is(movie.title, foundMovie.title);
-  })
-})
-
-test.skip('can add movie');
-test.skip('can remove movie');
-test.skip('can update movies');
+test.todo('can get all movies')
+test.todo('can add movie');
+test.todo('can remove movie');
