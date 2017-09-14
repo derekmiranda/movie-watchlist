@@ -28,10 +28,9 @@ moviesRouter.post('/', (req, res, next) => {
   return middleware(req, res, next);
 });
 
-moviesRouter.patch('/:id', (req, res, next) => {
-  const { id } = req.params;
+moviesRouter.patch('/', (req, res, next) => {
   const { movies } = req.body;
-  const middleware = makeControllerMiddleware(moviesController.updateMovies, id, movies);
+  const middleware = makeControllerMiddleware(moviesController.updateMovies, movies);
   return middleware(req, res, next);
 });
 
