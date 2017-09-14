@@ -18,7 +18,7 @@ test.serial('can get all movies', async t => {
     { title: 'Toy Story' },
     { title: 'Toy Story 2' },
   ];
-  const Movie = db.movie;
+  const Movie = db.Movie;
   try {
     const res = await Movie.bulkCreate(movies);
     const foundMovies = await Movie.findAll();
@@ -41,7 +41,7 @@ test.serial('should default non-title values to empty string', async t => {
   const movie = {
     title: 'Toy Story'
   };
-  const Movie = db.movie;
+  const Movie = db.Movie;
   try {
     const res = await Movie.create(movie);
     const firstMovie = await Movie.find();
@@ -62,7 +62,7 @@ test.serial('should default non-title values to empty string', async t => {
 })
 
 test('should have unique titles', async t => {
-  const Movie = db.movie;
+  const Movie = db.Movie;
   await t.throws(Movie.bulkCreate([
     { title: 'It' },
     { title: 'It' },
@@ -70,7 +70,7 @@ test('should have unique titles', async t => {
 })
 
 const movieThrowsMacro = async (t, obj) => {
-  const Movie = db.movie;
+  const Movie = db.Movie;
   await t.throws(Movie.create(obj));
 }
 
