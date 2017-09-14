@@ -24,3 +24,7 @@ app.use('/movies', moviesRouter);
 app.use(express.static('public'));
 
 app.listen(PORT, () => console.log(`Listening on ${PORT}`));
+
+db.syncPromise()
+  .then(() => console.log('DB setup'))
+  .catch(err => { throw err });
