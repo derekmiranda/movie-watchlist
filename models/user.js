@@ -7,6 +7,9 @@ module.exports = function(sequelize, DataTypes) {
       allowNull: false,
       validate: {
         notEmpty: true,
+      },
+      set(val) {
+        this.setDataValue('username', val.toLowerCase());
       }
     },
     passHash: DataTypes.STRING,
@@ -16,6 +19,10 @@ module.exports = function(sequelize, DataTypes) {
       type: DataTypes.STRING,
       validate: {
         isEmail: true,
+      },
+      unique: true,
+      set(val) {
+        this.setDataValue('email', val.toLowerCase());
       }
     },
   }, {
