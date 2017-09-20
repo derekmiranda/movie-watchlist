@@ -7,7 +7,13 @@ module.exports = {
       allowNull: false,
       validate: {
         notEmpty: true,
-        len: [8, 16],
+        origPasswordWithinLen: origPw => {
+          if (origPw.length < 8) {
+            throw new Error('Password too short');
+          } else if (origPw.length > 16) {
+            throw new Error('Password too long');
+          }
+        },
       },
     });
   },

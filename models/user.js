@@ -17,8 +17,14 @@ module.exports = function(sequelize, DataTypes) {
       allowNull: false,
       validate: {
         notEmpty: true,
+        origPasswordWithinLen: origPw => {
+          if (origPw.length < 8) {
+            throw new Error('Password too short');
+          } else if (origPw.length > 16) {
+            throw new Error('Password too long');
+          }
+        },
       },
-      len: [8, 16],
       // TODO: add setter
     },
     firstName: DataTypes.STRING,

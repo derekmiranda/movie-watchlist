@@ -61,7 +61,7 @@ test.serial('should default non-title values to empty string', async t => {
   }
 })
 
-test('should have unique titles', async t => {
+test.serial('should have unique titles', async t => {
   const Movie = db.Movie;
   await t.throws(Movie.bulkCreate([
     { title: 'It' },
