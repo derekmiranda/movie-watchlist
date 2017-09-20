@@ -18,6 +18,7 @@ module.exports = function(sequelize, DataTypes) {
       validate: {
         notEmpty: true,
       },
+      len: [8, 16],
       // TODO: add setter
     },
     firstName: DataTypes.STRING,
