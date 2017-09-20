@@ -12,7 +12,14 @@ module.exports = function(sequelize, DataTypes) {
         this.setDataValue('username', val.toLowerCase());
       }
     },
-    passHash: DataTypes.STRING,
+    passHash: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      validate: {
+        notEmpty: true,
+      },
+      // TODO: add setter
+    },
     firstName: DataTypes.STRING,
     lastName: DataTypes.STRING,
     email: {
@@ -21,6 +28,10 @@ module.exports = function(sequelize, DataTypes) {
         isEmail: true,
       },
       unique: true,
+      allowNull: false,
+      validate: {
+        notEmpty: true,
+      },
       set(val) {
         this.setDataValue('email', val.toLowerCase());
       }
