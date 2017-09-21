@@ -16,7 +16,7 @@ const makeControllerMiddleware = (controllerPromiseFn, ...controllerFnArgs) => {
   return (req, res) => (
     controllerPromiseFn(...controllerFnArgs)
       .then(result => formattedJSONResponse(res, result))
-      .catch(err => errorResponse({ res, err, statusCode: 500 }))
+      .catch(err => errorResponse({ res, err, statusCode: 422 }))
   )
 }
 
