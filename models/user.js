@@ -12,7 +12,21 @@ module.exports = function(sequelize, DataTypes) {
         this.setDataValue('username', val.toLowerCase());
       }
     },
-    passHash: DataTypes.STRING,
+    passHash: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      validate: {
+        notEmpty: true,
+        origPasswordWithinLen: origPw => {
+          if (origPw.length < 8) {
+            throw new Error('Password too short');
+          } else if (origPw.length > 16) {
+            throw new Error('Password too long');
+          }
+        },
+      },
+      // TODO: add setter
+    },
     firstName: DataTypes.STRING,
     lastName: DataTypes.STRING,
     email: {
@@ -21,6 +35,10 @@ module.exports = function(sequelize, DataTypes) {
         isEmail: true,
       },
       unique: true,
+      allowNull: false,
+      validate: {
+        notEmpty: true,
+      },
       set(val) {
         this.setDataValue('email', val.toLowerCase());
       }
