@@ -15,7 +15,7 @@ export const updateMovies = (movies) => {
     .then(res => res.json())
 }
 
-export const addMovie = (movie) => {
+export const saveNewMovie = (movie) => {
   const body = JSON.stringify({ movie });
 
   return fetch(process.env.MOVIES_API_URL, {
