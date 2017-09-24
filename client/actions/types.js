@@ -1,4 +1,5 @@
 // movies
+export const CREATE_NEW_MOVIE = 'CREATE_NEW_MOVIE';
 export const ADD_MOVIE = 'ADD_MOVIE';
 export const EDIT_NEW_MOVIE_VALUE = 'EDIT_NEW_MOVIE_VALUE';
 export const UPDATE_VALUE = 'UPDATE_VALUE';

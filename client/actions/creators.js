@@ -5,6 +5,11 @@ export const addMovie = (movie) => ({
   movie: { ...movie },
 })
 
+export const createNewMovie = (newMovie) => ({
+  type: types.CREATE_NEW_MOVIE,
+  newMovie: { ...newMovie },
+})
+
 export const deleteMovie = (movieIdx) => ({
   type: types.DELETE_MOVIE,
   movieIdx,
