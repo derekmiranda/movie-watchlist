@@ -1,6 +1,6 @@
 import createMovieRowContainer from './createMovieRowContainer';
 import UpdateMovieRow from '../components/UpdateMovieRow';
-import { updateValue, deleteMovie } from '../actions/creators';
+import { updateValue, requestDeleteMovie } from '../actions/creators';
 
 const mapStateToProps = (state, { idx }) => ({
   obj: state.movies[idx],
@@ -14,7 +14,7 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
       value
     })
   )),
-  deleteMovie: () => dispatch(deleteMovie(ownProps.idx)),
+  deleteMovie: (movie, idx) => dispatch(requestDeleteMovie(movie, idx)),
 })
 
 const MovieRow = createMovieRowContainer({

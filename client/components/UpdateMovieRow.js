@@ -2,9 +2,11 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import InputRow from './InputRow';
 
-const AddMovieRow = ({ orderedFields, obj, updateValue, deleteMovie }) => {
+const UpdateMovieRow = ({ orderedFields, obj, updateValue, deleteMovie, idx }) => {
+  const clearRow = () => deleteMovie(obj, idx);
+
   const removeBtn = (
-    <button onClick={deleteMovie}>Remove</button>
+    <button onClick={clearRow}>Remove</button>
   );
 
   return (
@@ -17,11 +19,11 @@ const AddMovieRow = ({ orderedFields, obj, updateValue, deleteMovie }) => {
   )
 }
 
-AddMovieRow.propTypes = {
+UpdateMovieRow.propTypes = {
   orderedFields: PropTypes.arrayOf(PropTypes.string).isRequired,
   obj: PropTypes.object.isRequired,
   updateValue: PropTypes.func.isRequired,
   deleteMovie: PropTypes.func.isRequired,
 }
 
-export default AddMovieRow;
+export default UpdateMovieRow;

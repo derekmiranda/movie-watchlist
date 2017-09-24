@@ -10,6 +10,16 @@ export const createNewMovie = (newMovie) => ({
   movie: { ...newMovie },
 })
 
+export const requestDeleteMovie = (movie, movieIdx) => ({
+  type: types.REQUEST_DELETE_MOVIE,
+  movie,
+  movieIdx,
+})
+
+export const clearNewMovie = () => ({
+  type: types.CLEAR_NEW_MOVIE,
+})
+
 export const deleteMovie = (movieIdx) => ({
   type: types.DELETE_MOVIE,
   movieIdx,
@@ -27,11 +37,6 @@ export const updateValue = ({ movieIdx, field, value }) => ({
   field,
   value,
 })
-
-export const clearNewMovie = () => ({
-  type: types.CLEAR_NEW_MOVIE,
-})
-
 
 export const submitNewMovie = (movie) => [
   createNewMovie(movie),
