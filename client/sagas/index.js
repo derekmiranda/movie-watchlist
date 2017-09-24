@@ -17,10 +17,9 @@ function* watchFetchData() {
   yield takeLatest(FETCH_STARTED, fetchData);
 }
 
-export function* postMovie(action) {
+export function* postMovie({ movie }) {
   try {
-    const res = yield call(addMovie);
-    console.log(res);
+    const res = yield call(addMovie, movie);
   } catch (err) {
     console.error(err);
   }
