@@ -19,7 +19,7 @@ function* watchFetchData() {
 
 export function* postMovie({ movie }) {
   try {
-    const res = yield call(addMovie, movie);
+    yield call(addMovie, movie);
   } catch (err) {
     console.error(err);
   }
