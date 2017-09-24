@@ -1,6 +1,6 @@
 import { call, put, takeLatest, takeEvery } from 'redux-saga/effects';
 
-import { fetchMovies, saveNewMovie } from '../services/moviesApi';
+import { fetchMovies, saveNewMovie, removeMovie } from '../services/moviesApi';
 import { FETCH_STARTED, CREATE_NEW_MOVIE } from '../actions/types';
 import { fetchSucceeded, addMovie, clearNewMovie } from '../actions/creators';
 
@@ -27,10 +27,12 @@ export function* postMovie({ movie }) {
   }
 }
 
-function* watchsaveNewMovie() {
+function* watchSaveNewMovie() {
   yield takeEvery(CREATE_NEW_MOVIE, postMovie);
 }
 
+export function* clearMovie
+
 export default function* rootSaga() {
-  yield [watchFetchData(), watchsaveNewMovie()];
+  yield [watchFetchData(), watchSaveNewMovie()];
 }

@@ -1,5 +1,4 @@
 // movies
-export const CREATE_NEW_MOVIE = 'CREATE_NEW_MOVIE';
 export const ADD_MOVIE = 'ADD_MOVIE';
 export const EDIT_NEW_MOVIE_VALUE = 'EDIT_NEW_MOVIE_VALUE';
 export const UPDATE_VALUE = 'UPDATE_VALUE';
@@ -11,3 +10,5 @@ export const SAVE_MOVIES = 'SAVE_MOVIES';
 export const FETCH_STARTED = 'FETCH_STARTED';
 export const FETCH_SUCCEEDED = 'FETCH_SUCCEEDED';
 export const FETCH_FAILED = 'FETCH_FAILED';
+export const CREATE_NEW_MOVIE = 'CREATE_NEW_MOVIE';
+export const REQUEST_DELETE_MOVIE = 'REQUEST_DELETE_MOVIE';
