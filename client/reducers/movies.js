@@ -1,4 +1,5 @@
 import { ADD_MOVIE, DELETE_MOVIE, UPDATE_VALUE, FETCH_SUCCEEDED } from '../actions/types';
+import processMovies from '../dataHandlers/movies';
 
 const defaultMovie = {
   title: '',
@@ -40,7 +41,7 @@ const movies = (state = [], action = {}) => {
       return state.map(updateTargetMovie);
     }
     case FETCH_SUCCEEDED: {
-      const movies = action.data;
+      const movies = processMovies(action.data);
       return movies.concat(state);
     }
     default:
