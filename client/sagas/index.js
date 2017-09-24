@@ -1,8 +1,8 @@
 import { call, put, takeLatest, takeEvery } from 'redux-saga/effects';
 
-import { fetchMovies, addMovie } from '../services/moviesApi';
-import { FETCH_STARTED, ADD_MOVIE } from '../actions/types';
-import { fetchSucceeded } from '../actions/creators';
+import { fetchMovies, saveNewMovie } from '../services/moviesApi';
+import { FETCH_STARTED, CREATE_NEW_MOVIE } from '../actions/types';
+import { fetchSucceeded, addMovie } from '../actions/creators';
 
 export function* fetchData(action) {
   try {
@@ -19,16 +19,17 @@ function* watchFetchData() {
 
 export function* postMovie({ movie }) {
   try {
-    yield call(addMovie, movie);
+    const newMovie = yield call(saveNewMovie, movie);
+    yield put(addMovie(newMovie));
   } catch (err) {
     console.error(err);
   }
 }
 
-function* watchAddMovie() {
-  yield takeEvery(ADD_MOVIE, postMovie);
+function* watchsaveNewMovie() {
+  yield takeEvery(CREATE_NEW_MOVIE, postMovie);
 }
 
 export default function* rootSaga() {
-  yield [watchFetchData(), watchAddMovie()];
+  yield [watchFetchData(), watchsaveNewMovie()];
 }
