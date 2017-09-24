@@ -7,7 +7,7 @@ export const addMovie = (movie) => ({
 
 export const createNewMovie = (newMovie) => ({
   type: types.CREATE_NEW_MOVIE,
-  newMovie: { ...newMovie },
+  movie: { ...newMovie },
 })
 
 export const deleteMovie = (movieIdx) => ({
@@ -34,7 +34,7 @@ export const clearNewMovie = () => ({
 
 
 export const submitNewMovie = (movie) => [
-  addMovie(movie),
+  createNewMovie(movie),
   clearNewMovie(),
 ]
 
