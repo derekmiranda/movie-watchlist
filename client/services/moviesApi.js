@@ -5,6 +5,10 @@ export const fetchMovies = () => {
 
 export const updateMovies = (movies) => {
   return fetch(process.env.MOVIES_API_URL, {
+    headers: {
+      Accept: 'application/json',
+      'Content-Type': 'application/json',
+    },
     method: 'PATCH',
     body: movies,
   })
@@ -12,9 +16,15 @@ export const updateMovies = (movies) => {
 }
 
 export const addMovie = (movie) => {
+  const body = JSON.stringify({ movie });
+
   return fetch(process.env.MOVIES_API_URL, {
+    headers: {
+      Accept: 'application/json',
+      'Content-Type': 'application/json',
+    },
     method: 'POST',
-    body: movie,
+    body,
   })
     .then(res => res.json())
 }
