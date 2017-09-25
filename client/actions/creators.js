@@ -16,10 +16,9 @@ export const requestDeleteMovie = (movie, movieIdx) => ({
   movieIdx,
 })
 
-export const requestUpdateMovie = (movie, movieIdx) => ({
+export const requestUpdateMovie = (movie) => ({
   type: types.REQUEST_UPDATE_MOVIE,
   movie,
-  movieIdx,
 })
 
 export const clearNewMovie = () => ({

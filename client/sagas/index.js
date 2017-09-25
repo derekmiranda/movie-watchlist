@@ -39,7 +39,6 @@ function* watchSaveNewMovie() {
 
 export function* clearMovie({ movie, movieIdx }) {
   try {
-    console.log('movie', movie);
     yield call(removeMovie, movie);
     yield put(deleteMovie(movieIdx));
   } catch (err) {
